@@ -1,5 +1,5 @@
 const size = {
-  sm: "768px",
+  sm: "1020px",
   lg: "1200px",
 };
 
