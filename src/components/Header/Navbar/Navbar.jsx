@@ -6,8 +6,10 @@ import {
   NavbarWrapper,
   NavbarIcon,
   NavbarLink,
+  NavbarUserLinks,
 } from "../Navbar/Navbar.styles";
 import Icons from "../../../assets/index";
+import SearchBar from "../../SearchBar/SearchBar";
 
 const Navbar = () => {
   return (
@@ -18,6 +20,8 @@ const Navbar = () => {
           <NavbarLink to={"/"}>
             <NavbarIcon src={Icons} />
           </NavbarLink>
+          <SearchBar />
+          <NavbarUserLinks>1</NavbarUserLinks>
         </NavbarContainer>
       </NavbarWrapper>
     </Container>
