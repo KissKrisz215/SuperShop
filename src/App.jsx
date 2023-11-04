@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
+import { useSelector } from "react-redux";
 import { theme } from "./styles/colors";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
@@ -16,11 +17,14 @@ import UpdateProfile from "./pages/UpdateProfile";
 import ChangePassword from "./pages/ChangePassword";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Header/Navbar/";
+import ModalBackDrop from "./components/Header/ModalBackDrop";
 
 function App() {
+  const CartDropDown = useSelector((state) => state.cartDropDown);
   return (
     <>
       <ThemeProvider theme={theme}>
+        {CartDropDown && <ModalBackDrop />}
         <Navbar />
         <GlobalStyle />
         <Routes>

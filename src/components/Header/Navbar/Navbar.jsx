@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarInfo from "../NavbarInfo/NavbarInfo";
+import NavbarInfo from "../NavbarInfo/";
 import {
   Container,
   NavbarContainer,
@@ -10,6 +10,8 @@ import {
 } from "../Navbar/Navbar.styles";
 import Icons from "../../../assets/index";
 import SearchBar from "../../SearchBar/SearchBar";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import CartDropDown from "../CartDropDown";
 
 const Navbar = () => {
   return (
@@ -21,9 +23,12 @@ const Navbar = () => {
             <NavbarIcon src={Icons} />
           </NavbarLink>
           <SearchBar />
-          <NavbarUserLinks>1</NavbarUserLinks>
+          <NavbarUserLinks>
+            <ShoppingCart />
+          </NavbarUserLinks>
         </NavbarContainer>
       </NavbarWrapper>
+      <CartDropDown />
     </Container>
   );
 };
