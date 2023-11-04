@@ -15,14 +15,14 @@ import MyOrders from "./pages/MyOrders";
 import UpdateProfile from "./pages/UpdateProfile";
 import ChangePassword from "./pages/ChangePassword";
 import NotFound from "./pages/NotFound";
-import NavbarInfo from "./components/Header/NavbarInfo/NavbarInfo";
+import Navbar from "./components/Header/Navbar/";
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <Navbar />
         <GlobalStyle />
-        <NavbarInfo />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
