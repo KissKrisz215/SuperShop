@@ -3,7 +3,7 @@ import breakpoint from "../../styles/breakpoints";
 
 export const Wrapper = styled.div`
   width: 90%;
-  max-width: 900px;
+  max-width: 800px;
 `;
 
 export const InputContainer = styled.div`

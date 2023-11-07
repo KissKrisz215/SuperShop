@@ -15,9 +15,15 @@ import {
   CheckOutButton,
   ButtonTitle,
   PriceContainer,
+  CartEmptyArray,
+  Title,
+  Description,
+  IconContainer,
+  Icon,
 } from "./CartDropDown.styles";
 import { setDropDown } from "../../../store/CartDropDown/actions";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
+import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 
 const testArr = [
   {
@@ -136,11 +142,17 @@ const CartDropDown = () => {
   const cartRef = useRef(null);
   const dispatch = useDispatch();
   const CartDropDown = useSelector((state) => state.cartDropDown);
+  const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
+
+  const handleDropDown = () => {
+    dispatch(setDropDown());
+    dispatch(setModalBackDrop(false));
+  };
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
-        dispatch(setDropDown());
+        handleDropDown();
       }
     };
 
@@ -187,7 +199,7 @@ const CartDropDown = () => {
           </HeaderIcon>
           <HeaderTitle>Shopping Cart</HeaderTitle>
         </HeaderTitleContainer>
-        <CloseButtonContainer onClick={() => dispatch(setDropDown())}>
+        <CloseButtonContainer onClick={() => handleDropDown()}>
           <CloseButtonIcon>
             <svg
               stroke="currentColor"
@@ -205,7 +217,31 @@ const CartDropDown = () => {
         </CloseButtonContainer>
       </HeaderContainer>
       <ContentContainer>
-        {testArr && testArr.map((item) => <ShoppingCartItem product={item} />)}
+        {testArr.length !== 0 ? (
+          testArr.map((item) => <ShoppingCartItem product={item} />)
+        ) : (
+          <CartEmptyArray>
+            <IconContainer>
+              <Icon>
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  height="1.65em"
+                  width="1.65em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M454.65 169.4A31.82 31.82 0 00432 160h-64v-16a112 112 0 00-224 0v16H80a32 32 0 00-32 32v216c0 39 33 72 72 72h272a72.22 72.22 0 0050.48-20.55 69.48 69.48 0 0021.52-50.2V192a31.75 31.75 0 00-9.35-22.6zM176 144a80 80 0 01160 0v16H176zm192 96a112 112 0 01-224 0v-16a16 16 0 0132 0v16a80 80 0 00160 0v-16a16 16 0 0132 0z"></path>
+                </svg>
+              </Icon>
+            </IconContainer>
+            <Title>Your cart is empty</Title>
+            <Description>
+              No items added in your cart. Please add product to your cart list.
+            </Description>
+          </CartEmptyArray>
+        )}
       </ContentContainer>
       <FooterContainer>
         <CheckOutButton>

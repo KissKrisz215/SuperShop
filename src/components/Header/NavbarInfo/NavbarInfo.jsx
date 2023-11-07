@@ -8,9 +8,23 @@ import {
   InfoContact,
   InfoLinks,
   TextDivider,
+  UserInfoContainer,
+  InfoIcon,
 } from "./NavbarInfo.styles";
+import { useSelector, useDispatch } from "react-redux";
+import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
+import { setLoginDropDown } from "../../../store/UserDropDown/actions";
 
 const NavbarInfo = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  const dispatch = useDispatch();
+
+  const handleDropDown = () => {
+    dispatch(setModalBackDrop(true));
+    dispatch(setLoginDropDown(true));
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -42,6 +56,33 @@ const NavbarInfo = () => {
           <InfoLinks to={"/contact-us"}>Contact Us</InfoLinks>
           <TextDivider>|</TextDivider>
           <InfoLinks to={"/user/dashboard"}>My Account</InfoLinks>
+          {isLoggedIn === false ? (
+            <UserInfoContainer onClick={() => handleDropDown()}>
+              <TextDivider>|</TextDivider>
+              <InfoIcon>
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  height="1em"
+                  width="0.55em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <InfoLinks>Login</InfoLinks>
+              </InfoIcon>
+            </UserInfoContainer>
+          ) : (
+            <UserInfoContainer>
+              <TextDivider>|</TextDivider>
+              <InfoLinks>Logout</InfoLinks>
+            </UserInfoContainer>
+          )}
         </InfoContainer>
       </Container>
     </Wrapper>

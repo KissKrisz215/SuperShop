@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Container, CartIcon, NumberContainer } from "./ShoppingCart.styles";
 import CartDropDown from "../CartDropDown";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDropDown } from "../../../store/CartDropDown/actions";
 import CartInfo from "../CartInfo/CartInfo";
+import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 
 const finalAmountTest = 11361.33;
 const finalItemTest = 14;
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
+  const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
+
+  const handleDropDown = () => {
+    dispatch(setModalBackDrop(true));
+    dispatch(setDropDown());
+  };
 
   return (
     <Container>
-      <CartIcon onClick={() => dispatch(setDropDown())}>
+      <CartIcon onClick={() => handleDropDown()}>
         <NumberContainer>5</NumberContainer>
         <svg
           stroke="currentColor"
@@ -23,8 +30,8 @@ const ShoppingCart = () => {
           stroke-linecap="round"
           stroke-linejoin="round"
           class="w-6 h-6 drop-shadow-xl"
-          height="1.2em"
-          width="1.2em"
+          height="1.35em"
+          width="1.35em"
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle cx="9" cy="21" r="1"></circle>

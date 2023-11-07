@@ -12,6 +12,8 @@ import Icons from "../../../assets/index";
 import SearchBar from "../../SearchBar/SearchBar";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import CartDropDown from "../CartDropDown";
+import UserToggle from "../UserToggle";
+import LoginDropDown from "../LoginDropDown";
 
 const Navbar = () => {
   return (
@@ -25,10 +27,12 @@ const Navbar = () => {
           <SearchBar />
           <NavbarUserLinks>
             <ShoppingCart />
+            <UserToggle />
           </NavbarUserLinks>
         </NavbarContainer>
       </NavbarWrapper>
       <CartDropDown />
+      <LoginDropDown />
     </Container>
   );
 };

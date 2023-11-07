@@ -18,13 +18,15 @@ import ChangePassword from "./pages/ChangePassword";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Header/Navbar/";
 import ModalBackDrop from "./components/Header/ModalBackDrop";
+import Notification from "./components/Header/Notification/Notification";
 
 function App() {
-  const CartDropDown = useSelector((state) => state.cartDropDown);
+  const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
   return (
     <>
       <ThemeProvider theme={theme}>
-        {CartDropDown && <ModalBackDrop />}
+        {isModalBackDrop === true && <ModalBackDrop />}
+        <Notification message={"Invalid user or password!"} />
         <Navbar />
         <GlobalStyle />
         <Routes>

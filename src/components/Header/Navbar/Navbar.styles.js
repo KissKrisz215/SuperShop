@@ -44,6 +44,7 @@ export const NavbarLink = styled(Link)``;
 
 export const NavbarUserLinks = styled.div`
   display: none;
+  gap: 1.5rem;
   @media only screen and ${breakpoint.device.sm} {
     display: flex;
   }

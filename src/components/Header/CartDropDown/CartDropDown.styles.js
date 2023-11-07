@@ -108,3 +108,42 @@ export const PriceContainer = styled.div`
   padding:0.45rem; 0.3rem;
   border-radius: 0.4rem;
 `;
+
+export const CartEmptyArray = styled.div`
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: column;
+`;
+
+export const Title = styled.h5`
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+`;
+
+export const Description = styled.p`
+  margin: 0;
+  font-size: 0.7rem;
+  width: 80%;
+  color: ${(props) => props.theme.mediumGray};
+  text-align: center;
+  line-height: 1rem;
+`;
+
+export const IconContainer = styled.div`
+  margin-bottom: 0.9rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Icon = styled.div`
+  color: ${(props) => props.theme.darkGreen};
+`;

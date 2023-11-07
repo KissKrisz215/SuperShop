@@ -9,11 +9,18 @@ import {
 } from "./CartInfo.styles";
 import { useDispatch } from "react-redux";
 import { setDropDown } from "../../../store/CartDropDown/actions";
+import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 
 const CartInfo = ({ finalItems, finalAmount }) => {
   const dispatch = useDispatch();
+
+  const handleDropDown = () => {
+    dispatch(setModalBackDrop(true));
+    dispatch(setDropDown());
+  };
+
   return (
-    <Container onClick={() => dispatch(setDropDown())}>
+    <Container onClick={() => handleDropDown()}>
       <Header>
         <IconContainer>
           <svg

@@ -50,9 +50,29 @@ export const InfoLinks = styled(Link)`
   font-weight: 300;
   text-decoration: none;
   color: black;
+  &:hover {
+    color: ${(props) => props.theme.emeraldGreen};
+  }
+  transition: color 0.15s ease-in-out;
 `;
 
 export const TextDivider = styled.span`
   font-size: 0.5rem;
   font-weight: 300;
+`;
+
+export const UserInfoContainer = styled.div`
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  cursor: pointer;
+`;
+export const InfoIcon = styled.div`
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  &:hover {
+    color: ${(props) => props.theme.emeraldGreen};
+  }
 `;
