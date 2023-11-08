@@ -7,6 +7,7 @@ import UserReducer from "./User";
 import loginDropDownReducer from "./UserDropDown";
 import modalBackDropReducer from "./ModalBackDrop";
 import NotificationReducer from "./Notification";
+import CategoriesReducer from "./Categories";
 
 const rootReducer = combineReducers({
   cartDropDown: cartDropDownReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   ModalBackDrop: modalBackDropReducer,
   notification: NotificationReducer,
+  categories: CategoriesReducer,
 });
 
 const persistConfig = {

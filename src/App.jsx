@@ -19,6 +19,16 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Header/Navbar/";
 import ModalBackDrop from "./components/Header/ModalBackDrop";
 import Notification from "./components/Header/Notification/Notification";
+import axios from "axios";
+
+const test = async () => {
+  const { data } = await axios(
+    "https://super-shop-backend-sooty.vercel.app/api"
+  );
+  console.log(data);
+};
+
+test();
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -26,7 +36,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         {isModalBackDrop === true && <ModalBackDrop />}
-        <Notification message={"Invalid user or password!"} />
+        {/* <Notification message={"Invalid user or password!"} /> */}
         <Navbar />
         <GlobalStyle />
         <Routes>

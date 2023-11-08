@@ -14,6 +14,7 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import CartDropDown from "../CartDropDown";
 import UserToggle from "../UserToggle";
 import LoginDropDown from "../LoginDropDown";
+import SubHeader from "../SubHeader";
 
 const Navbar = () => {
   return (
@@ -31,6 +32,7 @@ const Navbar = () => {
           </NavbarUserLinks>
         </NavbarContainer>
       </NavbarWrapper>
+      <SubHeader />
       <CartDropDown />
       <LoginDropDown />
     </Container>
