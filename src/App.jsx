@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { GlobalStyle } from "./styles/GlobalStyle";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import { useSelector } from "react-redux";
+import { getCategories } from "./store/Categories/actions";
+import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/colors";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
@@ -19,19 +21,17 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Header/Navbar/";
 import ModalBackDrop from "./components/Header/ModalBackDrop";
 import Notification from "./components/Header/Notification/Notification";
-import axios from "axios";
-
-const test = async () => {
-  const { data } = await axios(
-    "https://super-shop-backend-sooty.vercel.app/api"
-  );
-  console.log(data);
-};
-
-test();
+import Categories from "./pages/Categories/Categories";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -49,11 +49,12 @@ function App() {
           />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/offer" element={<Offers />} />
+          <Route path="/offers" element={<Offers />} />
           <Route path="/user/dashboard" element={<DashBoard />} />
           <Route path="/user/my-orders" element={<MyOrders />} />
           <Route path="/user/update-profile" element={<UpdateProfile />} />
           <Route path="/user/change-password" element={<ChangePassword />} />
+          <Route path="/categories/:name/:id" element={<Categories />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>

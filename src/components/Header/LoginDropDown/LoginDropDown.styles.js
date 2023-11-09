@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
   top: 0%;
   left: 0;
-  z-index: 1000;
+  z-index: 10000;
   display: ${(props) => (props.isLoginDropDown === true ? "block" : "none")};
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 `;

@@ -7,6 +7,7 @@ import {
   NavbarIcon,
   NavbarLink,
   NavbarUserLinks,
+  Wrapper,
 } from "../Navbar/Navbar.styles";
 import Icons from "../../../assets/index";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -18,12 +19,12 @@ import SubHeader from "../SubHeader";
 
 const Navbar = () => {
   return (
-    <Container>
+    <Wrapper>
       <NavbarInfo />
       <NavbarWrapper>
         <NavbarContainer>
           <NavbarLink to={"/"}>
-            <NavbarIcon src={Icons} />
+            <NavbarIcon src={Icons.LogoLight} />
           </NavbarLink>
           <SearchBar />
           <NavbarUserLinks>
@@ -33,9 +34,11 @@ const Navbar = () => {
         </NavbarContainer>
       </NavbarWrapper>
       <SubHeader />
-      <CartDropDown />
-      <LoginDropDown />
-    </Container>
+      <Container>
+        <CartDropDown />
+        <LoginDropDown />
+      </Container>
+    </Wrapper>
   );
 };
 

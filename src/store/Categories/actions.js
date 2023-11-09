@@ -11,10 +11,13 @@ export const getCategories = () => async (dispatch, getState) => {
       type: GET_CATEGORIES_PENDING,
     });
 
-    // const { data } = await axios("");
+    const { data } = await axios(
+      "https://super-shop-backend-five.vercel.app/api/categories/all"
+    );
 
     dispatch({
       type: GET_CATEGORIES_SUCCESS,
+      payload: data,
     });
   } catch (err) {
     console.log(err);
