@@ -33,6 +33,8 @@ export const Description = styled.p`
   margin-top: 0.7rem;
   font-size: 0.8rem;
   color: #4b5563;
+  text-align: center;
+  padding: 0rem 0.5rem;
 `;
 
 export const CategoryContainer = styled.div`
