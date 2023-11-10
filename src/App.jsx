@@ -22,6 +22,7 @@ import Navbar from "./components/Header/Navbar/";
 import ModalBackDrop from "./components/Header/ModalBackDrop";
 import Notification from "./components/Header/Notification/Notification";
 import Categories from "./pages/Categories/Categories";
+import { getCoupons } from "./store/Coupons/actions";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -30,6 +31,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getCoupons());
   }, []);
 
   return (

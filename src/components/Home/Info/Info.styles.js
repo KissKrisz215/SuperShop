@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  min-height: 550px;
+  min-height: 500px;
 `;
 
 export const Container = styled.div`
@@ -21,4 +21,5 @@ export const InfoItemsContainer = styled.div`
   width: 100%;
   display: flex;
   height: 75%;
+  gap: 1.5rem;
 `;

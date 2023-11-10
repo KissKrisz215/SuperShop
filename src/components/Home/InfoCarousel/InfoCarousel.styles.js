@@ -12,6 +12,7 @@ export const Container = styled.div`
   max-height: 240px;
   overflow: hidden;
   flex-wrap: no-wrap;
+
   @media only screen and ${breakpoint.device.sm} {
     width: 60%;
     max-height: 100%;

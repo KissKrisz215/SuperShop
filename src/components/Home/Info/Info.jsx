@@ -9,7 +9,7 @@ const Info = () => {
       <Container>
         <InfoItemsContainer>
           <InfoCarousel />
-          {/* <CouponInfo /> */}
+          <CouponInfo />
         </InfoItemsContainer>
       </Container>
     </Wrapper>
