@@ -16,11 +16,17 @@ import {
   ExpiredContainer,
   ActiveContainer,
   Header,
+  CircleTop,
+  CircleBottom,
+  CouponHeader,
+  CouponDescription,
+  CouponMinimumPrice,
 } from "./CouponCard.styles";
 import DateCountDown from "../DateCountDown/DateCountDown";
 
 const CouponCard = ({ coupon }) => {
   const [isExpired, setIsExpired] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const checkExpiryDate = () => {
     const currentDate = new Date();
@@ -30,6 +36,15 @@ const CouponCard = ({ coupon }) => {
     } else {
       setIsExpired(true);
     }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(coupon.couponCode);
+    setIsCopied(true);
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -73,7 +88,17 @@ const CouponCard = ({ coupon }) => {
             <CouponTextExpiry></CouponTextExpiry>
           </CouponTextContainer>
         </CouponInfo>
-        <CouponCode></CouponCode>
+        <CouponCode>
+          <CouponHeader onClick={copyToClipboard}>
+            {isCopied ? "Copied!" : coupon.couponCode}
+          </CouponHeader>
+          <CouponDescription>
+            * This coupon applies when shopping more than{" "}
+            <CouponMinimumPrice>${coupon.minimumAmount}</CouponMinimumPrice>
+          </CouponDescription>
+          <CircleTop />
+          <CircleBottom />
+        </CouponCode>
       </Container>
     </Wrapper>
   );

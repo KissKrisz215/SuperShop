@@ -21,5 +21,5 @@ export const InfoItemsContainer = styled.div`
   width: 100%;
   display: flex;
   height: 75%;
-  gap: 1.5rem;
+  gap: 1rem;
 `;

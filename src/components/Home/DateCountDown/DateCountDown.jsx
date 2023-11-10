@@ -9,18 +9,13 @@ const DateCountDown = ({ date, isExpired }) => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    // Set the end time
     const endTime = new Date(date).getTime();
 
-    // Update the countdown every second
     const countdownInterval = setInterval(() => {
-      // Get the current time
       const currentTime = new Date().getTime();
 
-      // Calculate the remaining time
       let timeRemaining = endTime - currentTime;
 
-      // If the countdown has reached zero, display "0 days 0 hours 0 minutes 0 seconds"
       if (timeRemaining <= 0) {
         clearInterval(countdownInterval);
         setCountdown("00d 00h 00m 00s");
@@ -29,7 +24,6 @@ const DateCountDown = ({ date, isExpired }) => {
         setMinutes("00");
         setSeconds("00");
       } else {
-        // Calculate days, hours, minutes, and seconds
         const calculatedDays = Math.floor(
           timeRemaining / (1000 * 60 * 60 * 24)
         );
@@ -43,7 +37,6 @@ const DateCountDown = ({ date, isExpired }) => {
           (timeRemaining % (1000 * 60)) / 1000
         );
 
-        // Display the countdown
         setCountdown(
           `${calculatedDays}d ${calculatedHours}h ${calculatedMinutes}m ${calculatedSeconds}s`
         );
@@ -54,9 +47,8 @@ const DateCountDown = ({ date, isExpired }) => {
       }
     }, 1000);
 
-    // Clean up the interval on component unmount
     return () => clearInterval(countdownInterval);
-  }, []); // empty dependency array ensures the effect runs only once on mount
+  }, []);
 
   return (
     <Container>

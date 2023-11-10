@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoint from "../../../styles/breakpoints";
 
 export const Container = styled.div`
   height: 125px;
@@ -22,13 +23,28 @@ export const CouponInfo = styled.div`
 `;
 
 export const CouponCode = styled.div`
+  position: relative;
   width: 30%;
+  border-left: 2px dashed #e5e7eb;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding-left: 0.2rem;
 `;
 
 export const CouponImage = styled.img`
-  width: 110px;
-  height: 110px;
+  max-width: 2rem;
+  width: 100%;
+  height: auto; // Ensure the aspect ratio is maintained
   border-radius: 0.3rem;
+  @media only screen and ${breakpoint.device.sm} {
+    max-width: 2.5rem;
+  }
+  @media only screen and ${breakpoint.device.lg} {
+    max-width: 4rem;
+  }
 `;
 
 export const CouponTextContainer = styled.div``;
@@ -82,4 +98,49 @@ export const Header = styled.h5`
   margin-top: 0.15rem;
   font-size: 0.8rem;
   font-weight: 600;
+`;
+
+export const CircleTop = styled.div`
+  position: absolute;
+  width: 13px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f9fafb;
+  left: calc(0% - 0.6rem);
+  top: calc(0% - 1.3rem);
+  padding: 0.3rem;
+`;
+
+export const CircleBottom = styled.div`
+  position: absolute;
+  width: 13px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f9fafb;
+  left: calc(0% - 0.6rem);
+  bottom: calc(0% - 1.3rem);
+  padding: 0.3rem;
+`;
+
+export const CouponHeader = styled.h5`
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.darkGreen};
+  background-color: #ecfdf5;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.4rem;
+  border: 1px dashed #6ee7b7;
+  cursor: pointer;
+`;
+
+export const CouponDescription = styled.p`
+  font-size: 0.6rem;
+  text-align: center;
+  color: ${(props) => props.theme.mediumGray};
+`;
+
+export const CouponMinimumPrice = styled.span`
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: ${(props) => props.theme.mediumGray};
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import breakpoint from "../../../styles/breakpoints";
 
 export const Container = styled.div`
-  width: 40%;
+  width: 45%;
   display: none;
   border: 2px solid #f97316;
   transition: border-color 0.18s ease-in-out;
