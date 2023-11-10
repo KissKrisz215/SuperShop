@@ -33,9 +33,9 @@ export const InfoItemsContainer = styled.div`
 
 export const InfoTextContainer = styled.div`
   box-sizing: border-box;
-  padding: 0rem 2rem;
+  padding: 2.3rem 1rem;
   width: 100%;
-  min-height: 130px;
+  min-height: 100px;
   background-color: ${(props) => props.theme.beige};
   border-radius: 0.4rem;
   display: flex;
@@ -43,11 +43,13 @@ export const InfoTextContainer = styled.div`
   justify-content: space-between;
   @media only screen and ${breakpoint.device.sm} {
     min-height: 100px;
+    padding: 0rem 2rem;
   }
 `;
 
 export const TextContainer = styled.div`
   max-width: 70%;
+  width: 60%;
   @media only screen and ${breakpoint.device.sm} {
     max-width: 100%;
   }

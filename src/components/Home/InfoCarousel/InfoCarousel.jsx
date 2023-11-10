@@ -89,6 +89,7 @@ const InfoCarousel = () => {
           </Carousel>
         ))}
       </CarouselContainer>
+
       <Indicators>
         {data.map((item, index) => (
           <Indicator
