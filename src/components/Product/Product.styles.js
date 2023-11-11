@@ -137,3 +137,8 @@ export const DiscountedPrice = styled.s`
   font-size: 0.7rem;
   color: ${(props) => props.theme.lightGray};
 `;
+
+export const QuantityButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;

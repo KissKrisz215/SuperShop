@@ -9,12 +9,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #4b5563;
+  color: ${(props) => props.color || "#4b5563"};
   position: ${(props) => props.position || "absolute"};
   bottom: 0%;
   right: 0%;
   max-width: 130px;
   max-height: 45px;
+  background: ${(props) => props.background || "none"};
   @media only screen and ${breakpoints.device.xxs} {
     width: ${(props) => props.width || "96px"};
     max-width: none;

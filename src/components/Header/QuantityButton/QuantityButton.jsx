@@ -16,6 +16,8 @@ const QuantityButton = ({
   border,
   fontSize,
   product,
+  background,
+  color,
 }) => {
   const dispatch = useDispatch();
 
@@ -25,6 +27,9 @@ const QuantityButton = ({
       height={height}
       position={position}
       border={border}
+      background={background}
+      color={color}
+      position={"relative"}
     >
       <ButtonContainer
         buttonWidth={buttonWidth}
