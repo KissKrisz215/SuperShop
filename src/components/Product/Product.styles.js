@@ -88,6 +88,9 @@ export const Button = styled.button`
   transition-duration: 150ms;
   color: ${(props) => props.theme.emeraldGreen};
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     color: #ffff;
     background-color: ${(props) => props.theme.emeraldGreen};
