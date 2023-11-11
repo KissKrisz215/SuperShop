@@ -24,6 +24,7 @@ import ModalBackDrop from "./components/Header/ModalBackDrop";
 import Notification from "./components/Header/Notification/Notification";
 import Categories from "./pages/Categories/Categories";
 import { getCoupons } from "./store/Coupons/actions";
+import Footer from "./components/Footer";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -61,6 +62,7 @@ function App() {
           <Route path="/categories/:name/:id" element={<Categories />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </ThemeProvider>
     </>
   );
