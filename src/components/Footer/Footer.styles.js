@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import breakpoints from "../../styles/breakpoints";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -197,4 +198,98 @@ export const PhoneText = styled.p`
 export const EmailText = styled.p`
   color: #4b5563;
   font-size: 0.7rem;
+`;
+
+export const SocialsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 180px;
+`;
+
+export const SocialsContainer = styled.div`
+  max-width: 1450px;
+  width: 100%;
+  background-color: #f9fafb;
+  border: 1px solid #f9fafb;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 2.5rem;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+  @media only screen and ${breakpoints.device.xs} {
+    padding: 2.5rem;
+  }
+`;
+
+export const SocialMediaContainer = styled.div``;
+
+export const SocialsHeader = styled.p`
+  font-size: 0.8rem;
+`;
+
+export const SocialsLinkContainer = styled.div`
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 0.7rem;
+`;
+
+export const PhoneContainer = styled.div`
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  @media only screen and ${breakpoints.device.xs} {
+    display: flex;
+  }
+`;
+
+export const PaymentContainer = styled.div`
+  display: none;
+  @media only screen and ${breakpoints.device.xs} {
+    display: block;
+  }
+`;
+
+export const SocialLink = styled.a``;
+
+export const PhoneNumber = styled.a`
+  text-decoration: none;
+  margin-top: 0.6rem;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.emeraldGreen};
+  font-weight: 700;
+`;
+
+export const PaymentLogo = styled.img`
+  min-width: 120px;
+  max-width: 280px;
+  height: 90px;
+  transition: 0.18s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const RightsReserved = styled.p`
+  max-width: 1450px;
+  padding: 1rem;
+  font-size: 0.7rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  algin-items: center;
+  gap: 0.2rem;
+`;
+
+export const RightReserverdContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const CopyRightHighlight = styled.p`
+  font-size: 0.7rem;
+  color: ${(props) => props.theme.emeraldGreen};
 `;
