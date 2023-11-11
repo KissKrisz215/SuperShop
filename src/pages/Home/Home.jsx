@@ -4,6 +4,7 @@ import { Container } from "./Home.styles";
 import Info from "../../components/Home/Info";
 import FeaturedCategories from "../../components/Home/FeaturedCategories";
 import ProductsItem from "../../components/Home/ProductsItem/ProductsItem";
+import ProductsItemText from "../../components/Home/ProductsItemText";
 
 const Home = () => {
   const [popularProducts, setPopularProducts] = useState(null);
@@ -24,8 +25,6 @@ const Home = () => {
   useEffect(() => {
     getProducts("discounted");
     getProducts("popular");
-    console.log(popularProducts);
-    console.log(discountedProducts);
   }, []);
 
   return (
@@ -41,7 +40,7 @@ const Home = () => {
           products={popularProducts}
         />
       )}
-
+      <ProductsItemText />
       {discountedProducts && (
         <ProductsItem
           title={"Latest Discounted Products"}
