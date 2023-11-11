@@ -6,11 +6,14 @@ export const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 0.7rem 0.5rem;
+  padding: 0.4rem 0.5rem 0.1rem;
   border-radius: 0.4rem;
   min-height: 260px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   position: relative;
+  @media only screen and ${breakpoints.device.sm} {
+    padding: 0.3rem 0.5rem;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -38,6 +41,8 @@ export const Title = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
 `;
 
 export const StockContainer = styled.div`
@@ -63,9 +68,13 @@ export const StockText = styled.p`
 `;
 
 export const ProductContent = styled.div`
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
   display: flex;
   justify-content: space-between;
+  padding: 0.6rem 0.3rem;
+  @media only screen and ${breakpoints.device.sm} {
+    margin-top: 0.4rem;
+  }
 `;
 
 export const ProductPrice = styled.p`
@@ -76,7 +85,7 @@ export const ProductPrice = styled.p`
 
 export const Button = styled.button`
   position: relative;
-  top: 0.4rem;
+  top: 0rem;
   align-self: end;
   width: 45px;
   height: 45px;
@@ -84,7 +93,7 @@ export const Button = styled.button`
   transition-property: all;
   border: 1px solid #e5e7eb;
   border-radius: 0.2rem;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier (0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   color: ${(props) => props.theme.emeraldGreen};
   cursor: pointer;
@@ -102,4 +111,10 @@ export const Button = styled.button`
   }
 `;
 
-export const ContentText = styled.div``;
+export const ContentText = styled.div`
+  position: relative;
+  padding: 0.7rem 0rem;
+  @media only screen and ${breakpoints.device.sm} {
+    padding: 0.5rem 0rem;
+  }
+`;
