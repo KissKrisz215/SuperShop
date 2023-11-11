@@ -81,6 +81,9 @@ export const ProductPrice = styled.p`
   margin-top: 0.6rem;
   font-weight: 600;
   font-size: 0.9rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
 `;
 
 export const Button = styled.button`
@@ -114,4 +117,23 @@ export const ContentText = styled.div`
   @media only screen and ${breakpoints.device.sm} {
     padding: 0.5rem 0rem;
   }
+`;
+
+export const DiscountContainer = styled.div`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.2rem;
+  font-size: 0.6rem;
+  background-color: ${(props) => props.theme.orangeDark};
+  color: #fff;
+  padding: 0.2rem 0.25rem;
+  border-radius: 0.3rem;
+  @media only screen and ${breakpoints.device.sm} {
+    right: 0.6rem;
+  }
+`;
+
+export const DiscountedPrice = styled.s`
+  font-size: 0.7rem;
+  color: ${(props) => props.theme.lightGray};
 `;

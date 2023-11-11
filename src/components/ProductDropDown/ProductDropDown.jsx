@@ -23,6 +23,8 @@ import {
   ProductInfoTag,
   ProductInfoTagContainer,
   ProductInfoButtonContainer,
+  DiscountContainer,
+  DiscountedPrice,
 } from "./ProductDropDown.styles";
 import { setModalBackDrop } from "../../store/ModalBackDrop/actions";
 import { setProductDropDown } from "../../store/ProductDropDown/actions";
@@ -63,6 +65,11 @@ const ProductDropDown = () => {
   return (
     <Container>
       <DropDownContainer>
+        {product.prices.discount > 0 && (
+          <DiscountContainer>
+            {product.prices.discount.toFixed(2)}% Off
+          </DiscountContainer>
+        )}
         <ProductImageContainer to={`/product/${product.title}`}>
           <ProductImage src={product.image[0]} />
         </ProductImageContainer>
@@ -73,7 +80,12 @@ const ProductDropDown = () => {
             <StockText>{product.stock}</StockText>
           </StockContainer>
           <Description>{product.description.en}</Description>
-          <Price>${product.prices.originalPrice}</Price>
+          <Price>
+            ${product.prices.originalPrice}
+            {product.prices.discount > 0 && (
+              <DiscountedPrice>{product.prices.originalPrice}</DiscountedPrice>
+            )}
+          </Price>
           <ButtonsContainer>
             <QuantityButton
               width={"180px"}

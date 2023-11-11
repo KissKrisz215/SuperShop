@@ -10,6 +10,8 @@ import {
   ProductPrice,
   Button,
   ContentText,
+  DiscountContainer,
+  DiscountedPrice,
 } from "./Product.styles";
 import { useDispatch } from "react-redux";
 import { setProductDropDown } from "../../store/ProductDropDown/actions";
@@ -29,7 +31,12 @@ const Product = ({ data }) => {
       <ProductContent>
         <ContentText>
           <Title>{data.title.en}</Title>
-          <ProductPrice>${data.prices.price}</ProductPrice>
+          <ProductPrice>
+            ${data.prices.price}
+            {data.prices.discount > 0 && (
+              <DiscountedPrice>{data.prices.originalPrice}</DiscountedPrice>
+            )}
+          </ProductPrice>
         </ContentText>
         <Button>
           <svg
@@ -49,6 +56,11 @@ const Product = ({ data }) => {
         Stock:
         <StockText>{data.stock}</StockText>
       </StockContainer>
+      {data.prices.discount > 0 && (
+        <DiscountContainer>
+          {data.prices.discount.toFixed(2)} % Off
+        </DiscountContainer>
+      )}
     </Container>
   );
 };

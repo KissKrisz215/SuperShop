@@ -143,6 +143,9 @@ export const Price = styled.p`
   margin-top: 0.9rem;
   font-weight: 600;
   font-size: 1.1rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -217,3 +220,19 @@ export const ProductInfoButton = styled(Link)`
 `;
 
 export const ProductInfoButtonContainer = styled.div``;
+
+export const DiscountContainer = styled.div`
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  font-size: 0.8rem;
+  background-color: ${(props) => props.theme.orangeDark};
+  color: #fff;
+  padding: 0.2rem 0.25rem;
+  border-radius: 0.3rem;
+`;
+
+export const DiscountedPrice = styled.s`
+  font-size: 0.85rem;
+  color: ${(props) => props.theme.lightGray};
+`;
