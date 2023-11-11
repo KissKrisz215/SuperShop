@@ -15,12 +15,17 @@ import {
 } from "./Product.styles";
 import { useDispatch } from "react-redux";
 import { setProductDropDown } from "../../store/ProductDropDown/actions";
+import { addDropDownProducts } from "../../store/ShoppingCartItems/actions";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
 
   const handleDropDown = () => {
     dispatch(setProductDropDown(true, data));
+  };
+
+  const handleProductAdd = () => {
+    dispatch(addDropDownProducts(data));
   };
 
   return (
@@ -38,7 +43,7 @@ const Product = ({ data }) => {
             )}
           </ProductPrice>
         </ContentText>
-        <Button>
+        <Button onClick={() => handleProductAdd()}>
           <svg
             stroke="currentColor"
             fill="currentColor"

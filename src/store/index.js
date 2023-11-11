@@ -10,6 +10,7 @@ import NotificationReducer from "./Notification";
 import CategoriesReducer from "./Categories";
 import CouponReducer from "./Coupons";
 import ProductDropDownReducer from "./ProductDropDown";
+import ShoppingCartReducer from "./ShoppingCartItems";
 
 const rootReducer = combineReducers({
   cartDropDown: cartDropDownReducer,
@@ -20,12 +21,13 @@ const rootReducer = combineReducers({
   categories: CategoriesReducer,
   coupons: CouponReducer,
   product: ProductDropDownReducer,
+  shoppingCart: ShoppingCartReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [],
+  whitelist: ["shoppingCart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

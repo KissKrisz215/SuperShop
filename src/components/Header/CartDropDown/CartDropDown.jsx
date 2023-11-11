@@ -21,120 +21,12 @@ import {
   IconContainer,
   Icon,
 } from "./CartDropDown.styles";
-import { setDropDown } from "../../../store/CartDropDown/actions";
+import {
+  setDropDownOpen,
+  setDropDownClosed,
+} from "../../../store/CartDropDown/actions";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
-
-const testArr = [
-  {
-    prices: {
-      discount: 0,
-      originalPrice: 112.72,
-      price: 112.72,
-    },
-    image: ["https://i.postimg.cc/ZRynchJY/Green-Leaf-Lettuce-each.jpg"],
-    tag: ['["lettuce","fresh vegetable"]'],
-    status: "show",
-    _id: "644500c2839a5e0c2f5c17d2",
-    sku: "",
-    barcode: "",
-    productId: "",
-    title: "Green Leaf Lettuce",
-    category: {
-      _id: "632aca374d87ff2494210bf0",
-      name: {
-        en: "Fresh Vegetable",
-      },
-    },
-    stock: 463,
-    isCombination: false,
-    __v: 0,
-    createdAt: "2023-04-23T09:56:18.442Z",
-    updatedAt: "2023-04-23T09:56:18.442Z",
-    id: "644500c2839a5e0c2f5c17d2",
-    variant: {
-      discount: 0,
-      originalPrice: 112.72,
-      price: 112.72,
-    },
-    price: 112.72,
-    originalPrice: 112.72,
-    quantity: 3,
-    itemTotal: 338.15999999999997,
-  },
-  {
-    prices: {
-      discount: 0,
-      originalPrice: 19.57,
-      price: 19.57,
-    },
-    image: ["https://i.postimg.cc/9FN3WwGS/Organic-Purple-Cauliflower-1lb.jpg"],
-    tag: ['["fresh fruits","fruits","vegetable"]'],
-    status: "show",
-    _id: "644500c2839a5e0c2f5c17c6",
-    sku: "",
-    barcode: "",
-    productId: "",
-    title: "Organic Purple Cauliflower",
-    category: {
-      _id: "632aca374d87ff2494210bf0",
-      name: {
-        en: "Fresh Vegetable",
-      },
-    },
-    stock: 29,
-    isCombination: false,
-    __v: 0,
-    createdAt: "2023-04-23T09:56:18.442Z",
-    updatedAt: "2023-04-23T09:56:18.442Z",
-    id: "644500c2839a5e0c2f5c17c6",
-    variant: {
-      discount: 0,
-      originalPrice: 19.57,
-      price: 19.57,
-    },
-    price: 19.57,
-    originalPrice: 19.57,
-    quantity: 2,
-    itemTotal: 39.14,
-  },
-  {
-    prices: {
-      discount: 0,
-      originalPrice: 65.22,
-      price: 65.22,
-    },
-    image: ["https://i.postimg.cc/htfBx1Dc/Organic-Greens-Red-Kale-per-lb.jpg"],
-    tag: ['["fresh fruits","fruits","vegetable"]'],
-    status: "show",
-    _id: "644500c2839a5e0c2f5c17bb",
-    sku: "",
-    barcode: "",
-    productId: "",
-    title: "Organic Greens Red Kale",
-    category: {
-      _id: "632aca374d87ff2494210bf0",
-      name: {
-        en: "Fresh Vegetable",
-      },
-    },
-    stock: 428,
-    isCombination: false,
-    __v: 0,
-    createdAt: "2023-04-23T09:56:18.442Z",
-    updatedAt: "2023-04-23T09:56:18.442Z",
-    id: "644500c2839a5e0c2f5c17bb",
-    variant: {
-      discount: 0,
-      originalPrice: 65.22,
-      price: 65.22,
-    },
-    price: 65.22,
-    originalPrice: 65.22,
-    quantity: 1,
-    itemTotal: 65.22,
-  },
-];
 
 const finalAmountTest = 1353.33;
 
@@ -143,9 +35,14 @@ const CartDropDown = () => {
   const dispatch = useDispatch();
   const CartDropDown = useSelector((state) => state.cartDropDown);
   const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
+  const products = useSelector((state) => state.shoppingCart);
+
+  const totalFinalPrice = products
+    .reduce((total, product) => total + product.finalPrice, 0)
+    .toFixed(2);
 
   const handleDropDown = () => {
-    dispatch(setDropDown());
+    dispatch(setDropDownClosed());
     dispatch(setModalBackDrop(false));
   };
 
@@ -217,8 +114,8 @@ const CartDropDown = () => {
         </CloseButtonContainer>
       </HeaderContainer>
       <ContentContainer>
-        {testArr.length !== 0 ? (
-          testArr.map((item) => <ShoppingCartItem product={item} />)
+        {products.length > 0 ? (
+          products.map((item) => <ShoppingCartItem product={item} />)
         ) : (
           <CartEmptyArray>
             <IconContainer>
@@ -246,7 +143,7 @@ const CartDropDown = () => {
       <FooterContainer>
         <CheckOutButton>
           <ButtonTitle>Proceed To Checkout</ButtonTitle>
-          <PriceContainer>${finalAmountTest}</PriceContainer>
+          <PriceContainer>${totalFinalPrice}</PriceContainer>
         </CheckOutButton>
       </FooterContainer>
     </Container>

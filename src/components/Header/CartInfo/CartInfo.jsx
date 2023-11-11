@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Header,
@@ -7,16 +7,17 @@ import {
   Title,
   Text,
 } from "./CartInfo.styles";
-import { useDispatch } from "react-redux";
-import { setDropDown } from "../../../store/CartDropDown/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setDropDownOpen } from "../../../store/CartDropDown/actions";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 
 const CartInfo = ({ finalItems, finalAmount }) => {
   const dispatch = useDispatch();
+  const isDropdown = useSelector((state) => state.cartDropDown.isActive);
 
   const handleDropDown = () => {
     dispatch(setModalBackDrop(true));
-    dispatch(setDropDown());
+    dispatch(setDropDownOpen());
   };
 
   return (

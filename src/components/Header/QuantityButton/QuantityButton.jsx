@@ -1,4 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+} from "../../../store/ShoppingCartItems/actions";
 import { Container, Label, ButtonContainer } from "./QuantityButton.styles";
 
 const QuantityButton = ({
@@ -10,7 +15,10 @@ const QuantityButton = ({
   position,
   border,
   fontSize,
+  product,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <Container
       width={width}
@@ -22,6 +30,7 @@ const QuantityButton = ({
         buttonWidth={buttonWidth}
         buttonHeight={buttonHeight}
         borderRight={border}
+        onClick={() => dispatch(decreaseQuantity(product))}
       >
         <svg
           stroke="currentColor"
@@ -42,6 +51,7 @@ const QuantityButton = ({
         buttonWidth={buttonWidth}
         buttonHeight={buttonHeight}
         borderLeft={border}
+        onClick={() => dispatch(increaseQuantity(product))}
       >
         <svg
           stroke="currentColor"

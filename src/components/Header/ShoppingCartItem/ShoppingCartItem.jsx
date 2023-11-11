@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Header,
@@ -12,22 +13,29 @@ import {
   DeleteButtonContainer,
 } from "./ShoppingCartItem.styles";
 import QuantityButton from "../QuantityButton/QuantityButton";
+import { removeDropDownProducts } from "../../../store/ShoppingCartItems/actions";
 
 const ShoppingCartItem = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const handleProductDelete = () => {
+    dispatch(removeDropDownProducts(product));
+  };
+
   return (
     <Container>
       <Header>
         <Icon src={product.image[0]} />
         <InfoContainer>
-          <InfoTitle>{product.title}</InfoTitle>
-          <InfoSubTitle>Item Price ${product.variant.price}</InfoSubTitle>
-          <InfoPriceText>{product.itemTotal.toFixed(2)}</InfoPriceText>
+          <InfoTitle>{product.title.en}</InfoTitle>
+          <InfoSubTitle>Item Price ${product.prices.price}</InfoSubTitle>
+          <InfoPriceText>{product.finalPrice.toFixed(2)}</InfoPriceText>
         </InfoContainer>
         <ButtonContainer>
-          <QuantityButton quantity={product.quantity} />
+          <QuantityButton quantity={product.quantity} product={product} />
         </ButtonContainer>
       </Header>
-      <DeleteButtonContainer>
+      <DeleteButtonContainer onClick={() => handleProductDelete()}>
         <DeleteButton>
           <svg
             stroke="currentColor"
