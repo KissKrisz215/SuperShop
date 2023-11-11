@@ -7,6 +7,7 @@ import LogoShopping1 from "./Icons/LogoShopping1.png";
 import LogoShopping2 from "./Icons/LogoShopping2.png";
 import LogoAppStore from "./Icons/LogoAppStore.svg";
 import LogoPlayStore from "./Icons/LogoPlayStore.svg";
+import LogoDark from "./Icons/LogoDark.svg";
 
 export default {
   LogoLight,
@@ -18,4 +19,5 @@ export default {
   LogoShopping2,
   LogoAppStore,
   LogoPlayStore,
+  LogoDark,
 };

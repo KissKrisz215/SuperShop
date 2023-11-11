@@ -32,7 +32,6 @@ const Product = ({ data }) => {
   };
 
   const isInCart = products.some((product) => product._id === data._id);
-  console.log(isInCart, data);
 
   return (
     <Container>
