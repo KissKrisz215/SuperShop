@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  z-index: 50;
   position: fixed;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  ${"" /* width: 90px; */}
-  min-width:90px;
+  min-width: 90px;
   border-radius: 0.3rem;
   cursor: pointer;
 `;

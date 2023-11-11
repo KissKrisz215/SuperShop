@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { getCategories } from "./store/Categories/actions";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/colors";
+import ProductDropDown from "./components/ProductDropDown/ProductDropDown";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -38,6 +39,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         {isModalBackDrop === true && <ModalBackDrop />}
+        <ProductDropDown />
         {/* <Notification message={"Invalid user or password!"} /> */}
         <Navbar />
         <GlobalStyle />

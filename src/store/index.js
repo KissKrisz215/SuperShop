@@ -9,6 +9,7 @@ import modalBackDropReducer from "./ModalBackDrop";
 import NotificationReducer from "./Notification";
 import CategoriesReducer from "./Categories";
 import CouponReducer from "./Coupons";
+import ProductDropDownReducer from "./ProductDropDown";
 
 const rootReducer = combineReducers({
   cartDropDown: cartDropDownReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   notification: NotificationReducer,
   categories: CategoriesReducer,
   coupons: CouponReducer,
+  product: ProductDropDownReducer,
 });
 
 const persistConfig = {

@@ -1,10 +1,28 @@
 import React from "react";
 import { Container, Label, ButtonContainer } from "./QuantityButton.styles";
 
-const QuantityButton = ({ width, height, quantity }) => {
+const QuantityButton = ({
+  width,
+  height,
+  quantity,
+  buttonWidth,
+  buttonHeight,
+  position,
+  border,
+  fontSize,
+}) => {
   return (
-    <Container width={width} height={height}>
-      <ButtonContainer>
+    <Container
+      width={width}
+      height={height}
+      position={position}
+      border={border}
+    >
+      <ButtonContainer
+        buttonWidth={buttonWidth}
+        buttonHeight={buttonHeight}
+        borderRight={border}
+      >
         <svg
           stroke="currentColor"
           fill="none"
@@ -19,8 +37,12 @@ const QuantityButton = ({ width, height, quantity }) => {
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
       </ButtonContainer>
-      <Label>{quantity}</Label>
-      <ButtonContainer>
+      <Label fontSize={fontSize}>{quantity}</Label>
+      <ButtonContainer
+        buttonWidth={buttonWidth}
+        buttonHeight={buttonHeight}
+        borderLeft={border}
+      >
         <svg
           stroke="currentColor"
           fill="none"
