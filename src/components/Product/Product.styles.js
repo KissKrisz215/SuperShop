@@ -82,8 +82,13 @@ export const ProductPrice = styled.p`
   font-weight: 600;
   font-size: 0.9rem;
   display: flex;
+  flex-direction: column;
   gap: 0.3rem;
   align-items: center;
+  @media only screen and ${breakpoints.device.sm} {
+    margin-top: 0.4rem;
+    flex-direction: row;
+  }
 `;
 
 export const Button = styled.button`

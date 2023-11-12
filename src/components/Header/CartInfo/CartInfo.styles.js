@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoint from "../../../styles/breakpoints";
 
 export const Container = styled.div`
   z-index: 50;
@@ -9,6 +10,10 @@ export const Container = styled.div`
   min-width: 90px;
   border-radius: 0.3rem;
   cursor: pointer;
+  display: none;
+  @media only screen and ${breakpoint.device.sm} {
+    display: block;
+  }
 `;
 
 export const Header = styled.div`

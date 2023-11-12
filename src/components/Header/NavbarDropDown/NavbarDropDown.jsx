@@ -17,6 +17,11 @@ const NavbarDropDown = ({
   activeDropDown,
   setActiveDropDown,
   setIsNavbarDropDown,
+  position,
+  boxShadow,
+  border,
+  width,
+  gap,
 }) => {
   const categories = useSelector((state) => state.categories.data);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -47,8 +52,14 @@ const NavbarDropDown = ({
   }, [activeCategory]);
 
   return (
-    <Wrapper ref={categoryRef}>
-      <CategoriesContainer>
+    <Wrapper
+      ref={categoryRef}
+      position={position}
+      boxShadow={boxShadow}
+      border={border}
+      width={width}
+    >
+      <CategoriesContainer gap={gap}>
         {categories &&
           categories.map((category) => (
             <CategoryItem key={category.id}>

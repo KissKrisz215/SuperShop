@@ -8,5 +8,5 @@ export const Container = styled.div`
   width: 100%;
   background: #000;
   opacity: 0.3;
-  z-index: 50;
+  z-index: 500;
 `;

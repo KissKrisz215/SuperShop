@@ -6,12 +6,13 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  position: sticky;
   z-index: 150;
 `;
 
 export const Wrapper = styled.div`
-  z-index: 100;
+  z-index: 50;
+  position: sticky;
+  top: 0;
 `;
 
 export const NavbarWrapper = styled.div`

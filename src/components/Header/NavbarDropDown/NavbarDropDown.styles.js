@@ -2,23 +2,25 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  position: absolute;
-  width: 270px;
+  position: ${(props) => props.position || "absolute"};
+  width: ${(props) => props.width || "270px"};
+  box-sizing: border-box;
   min-height: 500px;
   background: #ffff;
   border-radius: 0.4rem;
   top: calc(100% + 0.3rem);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${(props) =>
+    props.boxShadow ||
+    "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)"};
   padding: 1rem 1rem 2.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: ${(props) => props.border || "1px solid rgba(0, 0, 0, 0.1)"};
   z-index: 1000;
 `;
 
 export const CategoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: ${(props) => props.gap || "0.2rem"};
 `;
 
 export const CategoryItem = styled.div`
@@ -46,6 +48,7 @@ export const CategoryDropDownIcon = styled.div`
   position: absolute;
   top: 0.3rem;
   right: 0.5rem;
+  cursor: pointer;
 `;
 
 export const CategoryContent = styled.div`

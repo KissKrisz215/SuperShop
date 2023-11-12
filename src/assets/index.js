@@ -9,6 +9,7 @@ import LogoAppStore from "./Icons/LogoAppStore.svg";
 import LogoPlayStore from "./Icons/LogoPlayStore.svg";
 import LogoDark from "./Icons/LogoDark.svg";
 import LogoPayment from "./Icons/LogoPayment.png";
+import LogoDark2 from "./Icons/LogoDark2.svg";
 
 export default {
   LogoLight,
@@ -22,4 +23,5 @@ export default {
   LogoPlayStore,
   LogoDark,
   LogoPayment,
+  LogoDark2,
 };

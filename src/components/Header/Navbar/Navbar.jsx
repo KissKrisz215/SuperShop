@@ -34,10 +34,6 @@ const Navbar = () => {
         </NavbarContainer>
       </NavbarWrapper>
       <SubHeader />
-      <Container>
-        <CartDropDown />
-        <LoginDropDown />
-      </Container>
     </Wrapper>
   );
 };

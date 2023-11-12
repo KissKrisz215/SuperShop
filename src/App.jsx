@@ -25,6 +25,10 @@ import Notification from "./components/Header/Notification/Notification";
 import Categories from "./pages/Categories/Categories";
 import { getCoupons } from "./store/Coupons/actions";
 import Footer from "./components/Footer";
+import CartDropDown from "./components/Header/CartDropDown";
+import LoginDropDown from "./components/Header/LoginDropDown";
+import MobileNavbar from "./components/Header/MobileNavbar/MobileNavbar";
+import MenuDropDown from "./components/Header/MenuDropDown/MenuDropDown";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -40,7 +44,11 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         {isModalBackDrop === true && <ModalBackDrop />}
+        <CartDropDown />
         <ProductDropDown />
+        <LoginDropDown />
+        <MobileNavbar />
+        <MenuDropDown />
         {/* <Notification message={"Invalid user or password!"} /> */}
         <Navbar />
         <GlobalStyle />

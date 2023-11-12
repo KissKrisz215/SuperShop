@@ -28,8 +28,6 @@ import {
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 
-const finalAmountTest = 1353.33;
-
 const CartDropDown = () => {
   const cartRef = useRef(null);
   const dispatch = useDispatch();

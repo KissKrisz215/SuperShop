@@ -11,6 +11,7 @@ import CategoriesReducer from "./Categories";
 import CouponReducer from "./Coupons";
 import ProductDropDownReducer from "./ProductDropDown";
 import ShoppingCartReducer from "./ShoppingCartItems";
+import menuDropDownReducer from "./MenuDropDown";
 
 const rootReducer = combineReducers({
   cartDropDown: cartDropDownReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   coupons: CouponReducer,
   product: ProductDropDownReducer,
   shoppingCart: ShoppingCartReducer,
+  menuDropDown: menuDropDownReducer,
 });
 
 const persistConfig = {
