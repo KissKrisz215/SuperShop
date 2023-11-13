@@ -24,7 +24,7 @@ import {
 } from "./CouponCard.styles";
 import DateCountDown from "../DateCountDown/DateCountDown";
 
-const CouponCard = ({ coupon }) => {
+const CouponCard = ({ coupon, height, width }) => {
   const [isExpired, setIsExpired] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -52,8 +52,8 @@ const CouponCard = ({ coupon }) => {
   }, []);
 
   return (
-    <Wrapper>
-      <Container>
+    <Wrapper height={height}>
+      <Container height={height}>
         <CouponInfo>
           <CouponImage src={coupon.logo} />
           <CouponTextContainer>

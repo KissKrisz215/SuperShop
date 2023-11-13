@@ -2,7 +2,7 @@ import styled from "styled-components";
 import breakpoint from "../../../styles/breakpoints";
 
 export const Container = styled.div`
-  height: 125px;
+  height: ${(props) => props.height || "125px"};
   width: 100%;
   display: flex;
   background: #ffff;
@@ -12,7 +12,9 @@ export const Container = styled.div`
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  height: ${(props) => props.height || "auto"};
+`;
 
 export const CouponInfo = styled.div`
   height: 100%;
