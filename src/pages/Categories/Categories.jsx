@@ -43,16 +43,17 @@ const Categories = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [loadMoreCount, setLoadMoreCount] = useState(10);
+  const [sortOption, setSortOption] = useState("");
   const { id } = useParams();
 
   const getProducts = async () => {
     try {
-      const { data } = await axios(
+      const { data } = await axios.get(
         `https://super-shop-backend-five.vercel.app/api/categories/${id}`
       );
 
       setAllProducts(data);
-      setVisibleProducts(data.slice(0, loadMoreCount));
+      sortProducts(data, sortOption);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -60,12 +61,31 @@ const Categories = () => {
 
   const handleLoadMore = () => {
     setVisibleProducts(allProducts.slice(0, loadMoreCount + 10));
-    setLoadMoreCount(loadMoreCount + 10);
+    setLoadMoreCount((prevCount) => prevCount + 10);
+  };
+
+  const handleSortChange = (event) => {
+    const option = event.target.value;
+    setSortOption(option);
+    sortProducts(allProducts, option);
+  };
+
+  const sortProducts = (products, option) => {
+    let sortedProducts = [...products];
+
+    if (option === "lowToHigh") {
+      sortedProducts.sort((a, b) => a.prices.price - b.prices.price);
+    } else if (option === "highToLow") {
+      sortedProducts.sort((a, b) => b.prices.price - a.prices.price);
+    }
+
+    setAllProducts(sortedProducts);
+    setVisibleProducts(sortedProducts.slice(0, loadMoreCount));
   };
 
   useEffect(() => {
     getProducts();
-    setLoadMoreCount(18);
+    console.log(allProducts);
   }, [id]);
 
   return (
@@ -85,15 +105,16 @@ const Categories = () => {
         <CategoryProductsWrapper>
           <CategoryProductsHeader>
             <CategorySubHeader>
-              Total all{" "}
-              <ProductQuantity>
-                {allProducts && allProducts.length}
-              </ProductQuantity>{" "}
+              Total all <ProductQuantity>{allProducts.length}</ProductQuantity>{" "}
               items Found
             </CategorySubHeader>
-            <CategoryButton>
-              <CategoryButtonOption>Sort By Price</CategoryButtonOption>
-              <CategoryButtonOption>High to Low</CategoryButtonOption>
+            <CategoryButton value={sortOption} onChange={handleSortChange}>
+              <CategoryButtonOption value="lowToHigh">
+                Low To High
+              </CategoryButtonOption>
+              <CategoryButtonOption value="highToLow">
+                High To Low
+              </CategoryButtonOption>
             </CategoryButton>
           </CategoryProductsHeader>
           <CategoryProductsContent>
