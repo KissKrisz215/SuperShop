@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import {
   Wrapper,
@@ -19,7 +20,6 @@ import CategoryHeader from "../../components/CategoryHeader/CategoryHeader";
 import Icons from "../../assets/index";
 import CategoryCarousel from "../../components/CategoryCarousel";
 import Products from "../../components/Products";
-import { useSelector } from "react-redux";
 
 const CategoryLinks = [
   {

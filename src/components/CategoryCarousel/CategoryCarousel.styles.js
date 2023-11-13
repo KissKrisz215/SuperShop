@@ -11,9 +11,6 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   max-width: 1450px;
   width: 100%;
-  ${"" /* padding: 0.8rem; */}
-  ${"" /* display: flex; */}
-  ${"" /* gap: 0.3rem; */}
 `;
 
 export const CategoryTitle = styled.p`
@@ -58,13 +55,12 @@ export const ArrowLeftButton = styled.div`
   position: absolute;
   left: 0;
   top: 1.7rem;
-  z-index: 500;
+  z-index: 15;
   background-color: ${(props) => props.theme.emeraldGreen};
   color: #ffff;
   padding: 0.2rem;
   border-radius: 0.2rem;
   display: flex;
-
   transform: ${(props) => (props.rotate ? "rotate(180deg)" : "rotate(0deg)")};
   cursor: pointer;
 `;
