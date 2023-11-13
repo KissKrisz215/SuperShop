@@ -22,6 +22,7 @@ import LogoTeam3 from "./Icons/LogoTeam3.jpg";
 import LogoTeam4 from "./Icons/LogoTeam4.jpg";
 import LogoTeam5 from "./Icons/LogoTeam5.jpg";
 import LogoTeam6 from "./Icons/LogoTeam6.jpg";
+import IconForm from "./Icons/IconForm.png";
 
 export default {
   LogoLight,
@@ -48,4 +49,5 @@ export default {
   LogoTeam4,
   LogoTeam5,
   LogoTeam6,
+  IconForm,
 };
