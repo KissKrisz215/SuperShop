@@ -10,6 +10,9 @@ import LogoPlayStore from "./Icons/LogoPlayStore.svg";
 import LogoDark from "./Icons/LogoDark.svg";
 import LogoPayment from "./Icons/LogoPayment.png";
 import LogoDark2 from "./Icons/LogoDark2.svg";
+import LogoHeader1 from "./Icons/LogoHeader1.jpg";
+import LogoHeader2 from "./Icons/LogoHeader2.jpg";
+import LogoHeader3 from "./Icons/LogoHeader3.jpg";
 
 export default {
   LogoLight,
@@ -24,4 +27,7 @@ export default {
   LogoDark,
   LogoPayment,
   LogoDark2,
+  LogoHeader1,
+  LogoHeader2,
+  LogoHeader3,
 };
