@@ -1,8 +1,25 @@
-import React, { useEffect } from "react";
-import { Wrapper, Container, HeaderContainer } from "./Categories.styles";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import {
+  Wrapper,
+  Container,
+  HeaderContainer,
+  CategoryProductsWrapper,
+  CategoryProductsHeader,
+  CategorySubHeader,
+  CategoryButton,
+  CategoryButtonOption,
+  CategoryProductsContent,
+  ProductsButton,
+  ProductsButtonContainer,
+  ProductQuantity,
+} from "./Categories.styles";
 import CategoryHeader from "../../components/CategoryHeader/CategoryHeader";
 import Icons from "../../assets/index";
 import CategoryCarousel from "../../components/CategoryCarousel";
+import Products from "../../components/Products";
+import { useSelector } from "react-redux";
 
 const CategoryLinks = [
   {
@@ -23,7 +40,33 @@ const CategoryLinks = [
 ];
 
 const Categories = () => {
-  useEffect(() => {}, []);
+  const [allProducts, setAllProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState([]);
+  const [loadMoreCount, setLoadMoreCount] = useState(10);
+  const { id } = useParams();
+
+  const getProducts = async () => {
+    try {
+      const { data } = await axios(
+        `https://super-shop-backend-five.vercel.app/api/categories/${id}`
+      );
+
+      setAllProducts(data);
+      setVisibleProducts(data.slice(0, loadMoreCount));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  const handleLoadMore = () => {
+    setVisibleProducts(allProducts.slice(0, loadMoreCount + 10));
+    setLoadMoreCount(loadMoreCount + 10);
+  };
+
+  useEffect(() => {
+    getProducts();
+    setLoadMoreCount(18);
+  }, [id]);
 
   return (
     <Wrapper>
@@ -31,6 +74,7 @@ const Categories = () => {
         <HeaderContainer>
           {CategoryLinks.map((category) => (
             <CategoryHeader
+              key={category.title}
               link={category.link}
               image={category.img}
               title={category.title}
@@ -38,6 +82,31 @@ const Categories = () => {
           ))}
         </HeaderContainer>
         <CategoryCarousel />
+        <CategoryProductsWrapper>
+          <CategoryProductsHeader>
+            <CategorySubHeader>
+              Total all{" "}
+              <ProductQuantity>
+                {allProducts && allProducts.length}
+              </ProductQuantity>{" "}
+              items Found
+            </CategorySubHeader>
+            <CategoryButton>
+              <CategoryButtonOption>Sort By Price</CategoryButtonOption>
+              <CategoryButtonOption>High to Low</CategoryButtonOption>
+            </CategoryButton>
+          </CategoryProductsHeader>
+          <CategoryProductsContent>
+            <Products products={visibleProducts} />
+            {visibleProducts.length < allProducts.length && (
+              <ProductsButtonContainer>
+                <ProductsButton onClick={handleLoadMore}>
+                  Load More
+                </ProductsButton>
+              </ProductsButtonContainer>
+            )}
+          </CategoryProductsContent>
+        </CategoryProductsWrapper>
       </Container>
     </Wrapper>
   );

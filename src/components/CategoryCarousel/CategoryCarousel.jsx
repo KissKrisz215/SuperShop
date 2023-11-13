@@ -70,7 +70,6 @@ const CategoryCarousel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      // Adjust the number of slidesToShow based on the window width
       if (window.innerWidth <= 600) {
         setSlidesToShow(3);
       } else if (window.innerWidth <= 768) {
@@ -86,13 +85,10 @@ const CategoryCarousel = () => {
       }
     };
 
-    // Attach the event listener
     window.addEventListener("resize", handleResize);
 
-    // Initial call to set the initial slidesToShow based on window width
     handleResize();
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
