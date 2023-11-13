@@ -27,3 +27,5 @@ export const getCoupons = () => async (dispatch, getState) => {
     });
   }
 };
+
+export default getCoupons;

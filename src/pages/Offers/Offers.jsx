@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import HeaderItem from "../../components/HeaderItem";
 import { Container, Wrapper, CouponContainer, Coupon } from "./Offers.styles";
 import CouponCard from "../../components/Home/CouponCard";
-import { useSelector } from "react-redux";
+import GetCoupons from "../../store/Coupons/actions";
 
 const Offers = () => {
   const coupons = useSelector((state) => state.coupons);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetCoupons());
+  }, []);
 
   return (
     <HeaderItem title={"Offers"}>
