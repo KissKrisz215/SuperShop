@@ -18,10 +18,6 @@ const ShoppingCart = () => {
     dispatch(setDropDownOpen());
   };
 
-  useEffect(() => {
-    console.log("Modified", cartProducts);
-  }, [cartProducts]);
-
   const totalFinalPrice = cartProducts
     .reduce((total, product) => total + product.finalPrice, 0)
     .toFixed(2);

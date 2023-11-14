@@ -42,8 +42,6 @@ const NavbarDropDown = ({
   };
 
   useEffect(() => {
-    console.log(activeCategory);
-
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {

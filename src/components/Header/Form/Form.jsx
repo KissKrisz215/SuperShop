@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   LoginFormContainer,
@@ -24,6 +24,7 @@ import {
 } from "./Form.styles";
 import { useDispatch } from "react-redux";
 import { setLoginFormType } from "../../../store/UserDropDown/actions";
+import axios from "axios";
 
 const Form = ({
   inputs,
@@ -33,7 +34,9 @@ const Form = ({
   title,
   description,
   linktext,
+  apiUrl,
 }) => {
+  const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const handleFormPage = () => {
     dispatch(setLoginFormType(linkto));
@@ -42,6 +45,30 @@ const Form = ({
   const handleForgotPassword = () => {
     dispatch(setLoginFormType("resetpassword"));
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleFormSubmit = async () => {
+    console.log(formData);
+    try {
+      const response = await axios.post(apiUrl, formData);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    setFormData({});
+  }, [inputs]);
 
   return (
     <LoginFormContainer>
@@ -59,7 +86,12 @@ const Form = ({
                   <InputIcon>
                     <StyledFontAwesomeIcon size={"xs"} icon={item.icon} />
                   </InputIcon>
-                  <Input placeholder={item.inputholder} />
+                  <Input
+                    onChange={handleInputChange}
+                    name={item.formLabel}
+                    placeholder={item.inputholder}
+                    value={formData[item.formLabel] || ""}
+                  />
                 </InputContainer>
               </InputWrapper>
             ))}
@@ -71,7 +103,9 @@ const Form = ({
         </PasswordLinkContainer>
       </FormBody>
       <ButtonsContainer>
-        <FormButton>{buttontext && buttontext}</FormButton>
+        <FormButton onClick={handleFormSubmit}>
+          {buttontext && buttontext}
+        </FormButton>
         <ButtonsDivider>OR</ButtonsDivider>
         <SignUpContainer>
           <SignUpText>{linktext && linktext}</SignUpText>

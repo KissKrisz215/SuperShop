@@ -19,11 +19,13 @@ const loginInputs = [
     label: "Email",
     inputholder: "Email",
     icon: faEnvelope,
+    formLabel: "email",
   },
   {
     label: "Password",
     inputholder: "Password",
     icon: faLock,
+    formLabel: "password",
   },
 ];
 
@@ -32,16 +34,19 @@ const signUpInputs = [
     label: "Name",
     inputholder: "Full Name",
     icon: faUser,
+    formLabel: "username",
   },
   {
     label: "Email",
     inputholder: "Email",
     icon: faEnvelope,
+    formLabel: "email",
   },
   {
     label: "Password",
     inputholder: "Password",
     icon: faLock,
+    formLabel: "password",
   },
 ];
 
@@ -50,6 +55,7 @@ const passwordInputs = [
     label: "Email",
     inputholder: "Your Registered Email",
     icon: faEnvelope,
+    formLabel: "email",
   },
 ];
 
@@ -78,6 +84,7 @@ const LoginDropDown = () => {
           linkto="signup"
           inputs={loginInputs}
           linktext={"Don't have an account yet?"}
+          apiUrl="https://super-shop-backend-five.vercel.app/api/auth/login"
         />
       );
       break;
@@ -91,6 +98,7 @@ const LoginDropDown = () => {
           linkto="login"
           inputs={signUpInputs}
           linktext={"Already have an account?"}
+          apiUrl="https://super-shop-backend-five.vercel.app/api/auth/signup"
         />
       );
       break;
@@ -104,6 +112,7 @@ const LoginDropDown = () => {
           inputs={passwordInputs}
           linktext={"Already have an account?"}
           linkto="login"
+          apiUrl="https://super-shop-backend-five.vercel.app/api/user/changepassword"
         />
       );
       break;

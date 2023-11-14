@@ -6,10 +6,6 @@ import CouponCard from "../CouponCard";
 const CouponInfo = () => {
   const { data } = useSelector((state) => state.coupons);
 
-  useEffect(() => {
-    console.log(data);
-  }, []);
-
   return (
     <Container>
       <Header>Latest Super Discount Active Coupon Code</Header>
