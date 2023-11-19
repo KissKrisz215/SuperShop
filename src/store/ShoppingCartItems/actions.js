@@ -80,7 +80,6 @@ export const decreaseQuantity = (item) => (dispatch, getState) => {
 export const increaseQuantity = (item) => (dispatch, getState) => {
   const state = getState();
   const productsArray = state.shoppingCart;
-  console.log("called increasequantity");
 
   const existingProduct = productsArray.find(
     (product) => product._id === item._id

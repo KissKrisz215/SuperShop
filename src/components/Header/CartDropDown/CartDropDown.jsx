@@ -139,7 +139,7 @@ const CartDropDown = () => {
         )}
       </ContentContainer>
       <FooterContainer>
-        <CheckOutButton>
+        <CheckOutButton onClick={handleDropDown} to={"/checkout"}>
           <ButtonTitle>Proceed To Checkout</ButtonTitle>
           <PriceContainer>${totalFinalPrice}</PriceContainer>
         </CheckOutButton>

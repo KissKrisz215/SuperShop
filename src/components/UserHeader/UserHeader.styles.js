@@ -18,6 +18,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 2rem;
   padding: 0rem 2.5rem;
+  box-sizing: border-box;
   @media only screen and ${breakpoints.device.sm} {
     padding: 0rem 1.5rem;
     flex-direction: row;

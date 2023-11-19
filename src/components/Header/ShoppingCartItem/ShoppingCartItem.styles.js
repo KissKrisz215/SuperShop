@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: space-between;
   transition: background 0.12s ease-in-out;
   border-top: 1px solid ${(props) => props.theme.gray};
+
   &:hover {
     background: #f9fafb;
     cursor: pointer;

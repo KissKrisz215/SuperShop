@@ -33,6 +33,8 @@ import {
   TableTextContainer,
   TableHeaderPrice,
   NavigationFontAwesome,
+  IconContainer,
+  Icon,
 } from "./OrdersTable.styles";
 
 const OrdersTable = ({ headers, isTableHeader }) => {
@@ -49,7 +51,7 @@ const OrdersTable = ({ headers, isTableHeader }) => {
       const { data } = await axios("http://localhost:3500/api/user/orders", {
         headers: {
           "x-auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTUzZjdjMWFhNTk5OTM1MzI0ZWNhOGMiLCJpYXQiOjE3MDAxNDIwNTYsImV4cCI6MTcwMDE0NTY1Nn0.QI5y_Yx6JNui4mnwmNDm7ugHW-hOHfuTlMpoZ4H1FNU",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTUzZjdjMWFhNTk5OTM1MzI0ZWNhOGMiLCJpYXQiOjE3MDAxNTM1MjcsImV4cCI6MTcwMDE1NzEyN30.cbfXNzdit7uDGukMI3rWa2F9sJ15b1dfpb-Cb4PMHfo",
         },
       });
       setOrderData(data);
@@ -61,12 +63,6 @@ const OrdersTable = ({ headers, isTableHeader }) => {
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= pages.length) {
-      setActivePage(page);
-    }
   };
 
   useEffect(() => {
@@ -144,6 +140,20 @@ const OrdersTable = ({ headers, isTableHeader }) => {
     getHeaderData();
   }, [orderData]);
 
+  const handlePageChange = (newPage) => {
+    if (pages) {
+      const totalPages = pages.length;
+
+      if (newPage < 1) {
+        newPage = 1;
+      } else if (newPage > totalPages) {
+        newPage = totalPages;
+      }
+
+      setActivePage(newPage);
+    }
+  };
+
   return (
     <Wrapper>
       {isTableHeader && (
@@ -219,6 +229,21 @@ const OrdersTable = ({ headers, isTableHeader }) => {
       )}
       {orderData === null && (
         <ErrorMessageContainer>
+          <IconContainer>
+            <Icon>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="1.65em"
+                width="1.65em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M454.65 169.4A31.82 31.82 0 00432 160h-64v-16a112 112 0 00-224 0v16H80a32 32 0 00-32 32v216c0 39 33 72 72 72h272a72.22 72.22 0 0050.48-20.55 69.48 69.48 0 0021.52-50.2V192a31.75 31.75 0 00-9.35-22.6zM176 144a80 80 0 01160 0v16H176zm192 96a112 112 0 01-224 0v-16a16 16 0 0132 0v16a80 80 0 00160 0v-16a16 16 0 0132 0z"></path>
+              </svg>
+            </Icon>
+          </IconContainer>
           <ErrorMessage>No Orders!</ErrorMessage>
         </ErrorMessageContainer>
       )}

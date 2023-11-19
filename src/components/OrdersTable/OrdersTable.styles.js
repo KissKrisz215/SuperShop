@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import breakpoints from "../../styles/breakpoints";
 
 export const Wrapper = styled.div`
   min-height: 500px;
+  ${"" /* max-height: 1000px; */}
+  ${"" /* height: 100%; */}
+  overflow: scroll;
 `;
 
 export const Container = styled.table`
@@ -68,14 +72,17 @@ export const Button = styled.button`
 
 export const ErrorMessageContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  margin: 8rem 0rem;
+  gap: 0.4rem;
 `;
 
 export const ErrorMessage = styled.p`
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 `;
 
 export const TableNavigationContainer = styled.div`
@@ -128,22 +135,30 @@ export const PageInnerText = styled.p`
 export const TableHeaderContainer = styled.div`
   margin: 0rem 0rem 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 100%;
-  max-height: 75px;
-  height: 100px;
   gap: 1rem;
+  @media only screen and ${breakpoints.device.sm} {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+  }
 `;
 
 export const TableHeaderInfo = styled.div`
+  height: 80px;
+
   border: 1px solid #e5e7eb;
-  height: 100%;
   border-radius: 0.3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0rem 1rem;
   gap: 0.5rem;
+  @media only screen and ${breakpoints.device.sm} {
+    padding: 0rem;
+    justify-content: center;
+  }
 `;
 
 export const CustomFontAwesome = styled(FontAwesomeIcon)`
@@ -167,4 +182,18 @@ export const TableTextContainer = styled.div``;
 
 export const NavigationFontAwesome = styled(FontAwesomeIcon)`
   font-size: 0.5rem;
+`;
+
+export const IconContainer = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Icon = styled.div`
+  color: ${(props) => props.theme.darkGreen};
 `;

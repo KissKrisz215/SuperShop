@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -80,7 +81,9 @@ export const FooterContainer = styled.div`
   background-color: #ffff;
 `;
 
-export const CheckOutButton = styled.div`
+export const CheckOutButton = styled(Link)`
+  text-decoration: none;
+  color: #fff;
   height: 100%;
   width: 90%;
   justify-content: space-between;
@@ -96,7 +99,7 @@ export const CheckOutButton = styled.div`
 `;
 
 export const ButtonTitle = styled.p`
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin: 0rem 0.5rem;
 `;
 
