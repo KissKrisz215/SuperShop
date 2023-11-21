@@ -23,6 +23,7 @@ import LogoTeam4 from "./Icons/LogoTeam4.jpg";
 import LogoTeam5 from "./Icons/LogoTeam5.jpg";
 import LogoTeam6 from "./Icons/LogoTeam6.jpg";
 import IconForm from "./Icons/IconForm.png";
+import Icon404 from "./Icons/404.svg";
 
 export default {
   LogoLight,
@@ -50,4 +51,5 @@ export default {
   LogoTeam5,
   LogoTeam6,
   IconForm,
+  Icon404,
 };

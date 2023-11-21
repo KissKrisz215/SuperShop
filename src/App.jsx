@@ -54,8 +54,8 @@ function App() {
         <MobileNavbar />
         <MenuDropDown />
         {/* <Notification message={"Invalid user or password!"} /> */}
-        <Navbar />
         <GlobalStyle />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />

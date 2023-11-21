@@ -17,7 +17,7 @@ import UserToggle from "../UserToggle";
 import LoginDropDown from "../LoginDropDown";
 import SubHeader from "../SubHeader";
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
   return (
     <Wrapper>
       <NavbarInfo />
