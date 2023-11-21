@@ -54,5 +54,6 @@ export const NavbarUserLinks = styled.div`
   gap: 1.5rem;
   @media only screen and ${breakpoint.device.sm} {
     display: flex;
+    align-items: center;
   }
 `;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
 import {
   Wrapper,
   Container,
@@ -26,6 +27,8 @@ import {
 } from "./CheckOut.styles";
 import ShoppingCartItem from "../Header/ShoppingCartItem/ShoppingCartItem";
 import CheckOutForm from "../CheckOutForm/CheckOutForm";
+import AuthContext from "../../context/AuthProvider";
+import { deleteAllProducts } from "../../store/ShoppingCartItems/actions";
 
 const CheckOut = () => {
   const initialFormData = {
@@ -41,12 +44,13 @@ const CheckOut = () => {
     products: [],
     activatedCoupon: null,
     payment: {
-      type: "cash",
+      paymentMethod: "cash",
       details: null,
     },
     coupon: "",
   };
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
   const [subTotal, setSubTotal] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -64,6 +68,7 @@ const CheckOut = () => {
   const [couponMessage, setCouponMessage] = useState(null);
   const [coupon, setCoupon] = useState(null);
   const products = useSelector((state) => state.shoppingCart);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     calculatePrices();
@@ -73,7 +78,7 @@ const CheckOut = () => {
     const formErrors = {};
 
     if (
-      (formData.payment.type === "card" &&
+      (formData.payment.paymentMethod === "card" &&
         (!formData.payment.details ||
           JSON.stringify(formData.payment.details) ===
             JSON.stringify({
@@ -105,6 +110,12 @@ const CheckOut = () => {
       }
     });
 
+    console.log(errors);
+    const phoneNumberRegex = /^\d{10,12}$/;
+    if (!phoneNumberRegex.test(formData.phone)) {
+      formErrors.phoneFormat = true;
+    }
+
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
@@ -125,14 +136,13 @@ const CheckOut = () => {
     if (!isValid) {
       return;
     }
-    console.log(formData);
     try {
       const { data } = await axios.post(
-        `https://super-shop-backend-five.vercel.app/api/user/order`,
+        `http://localhost:3500/api/user/order`,
         formData,
         {
           headers: {
-            "x-auth-token": "",
+            "x-auth-token": `${auth?.accessToken}`,
           },
         }
       );
@@ -140,9 +150,9 @@ const CheckOut = () => {
       if (orderId) {
         setTimeout(() => {
           navigate(`/user/orders/${orderId}`);
-        }, 2500);
+          dispatch(deleteAllProducts());
+        }, 1000);
       }
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -166,7 +176,7 @@ const CheckOut = () => {
       setFormData((prevFormData) => ({
         ...prevFormData,
         payment: {
-          type: "cash",
+          paymentMethod: "cash",
           details: null,
         },
       }));
@@ -174,7 +184,7 @@ const CheckOut = () => {
       setFormData((prevFormData) => ({
         ...prevFormData,
         payment: {
-          type: "card",
+          paymentMethod: "card",
           details: cardDetails,
         },
       }));
@@ -223,7 +233,7 @@ const CheckOut = () => {
           discount += parseFloat(activatedCoupon.discountType.value);
         }
       }
-
+      formData.totalCost = totalCost;
       setDiscount(discount);
       setTotalCost(totalCost.toFixed(2));
       setSubTotal(subTotal.toFixed(2));
@@ -239,12 +249,12 @@ const CheckOut = () => {
   }, [formData.shipping]);
 
   useEffect(() => {
-    if (formData.payment.type === "cash") {
+    if (formData.payment.paymentMethod === "cash") {
       setPaymentDropDown(false);
-    } else if (formData.payment.type === "card") {
+    } else if (formData.payment.paymentMethod === "card") {
       setPaymentDropDown(true);
     }
-  }, [formData.payment.type]);
+  }, [formData.payment.paymentMethod]);
 
   const handleCardChange = (e) => {
     const { name, value } = e.target;

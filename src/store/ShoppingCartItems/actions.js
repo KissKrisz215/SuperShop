@@ -1,4 +1,4 @@
-import { SET_CART_DROPDOWN } from "./index";
+import { SET_CART_DROPDOWN, DELETE_ALL_ITEMS } from "./index";
 
 export const addDropDownProducts = (data) => (dispatch, getState) => {
   const state = getState();
@@ -116,3 +116,7 @@ export const removeDropDownProducts = (data) => (dispatch, getState) => {
     payload: updatedProductsArray,
   });
 };
+
+export const deleteAllProducts = () => ({
+  type: DELETE_ALL_ITEMS,
+});

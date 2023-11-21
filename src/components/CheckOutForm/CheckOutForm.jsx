@@ -89,6 +89,9 @@ const CheckOutForm = ({
               onChange={handleChange}
             />
             {errors.phone && <ErrorMessage>Phone is required!</ErrorMessage>}
+            {errors.phoneFormat && (
+              <ErrorMessage>Format is invalid e.g., 06143286189</ErrorMessage>
+            )}
           </InputContainer>
         </InputWrapper>
       </FormWrapper>

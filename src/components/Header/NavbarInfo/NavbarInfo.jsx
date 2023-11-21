@@ -1,4 +1,5 @@
 import React from "react";
+import { useContext } from "react";
 import {
   Wrapper,
   Container,
@@ -14,8 +15,11 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import { setLoginDropDown } from "../../../store/UserDropDown/actions";
+import AuthContext from "../../../context/AuthProvider";
+import useLogout from "../../../hooks/useLogout";
 
 const NavbarInfo = () => {
+  const { auth } = useContext(AuthContext);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const dispatch = useDispatch();
@@ -24,6 +28,8 @@ const NavbarInfo = () => {
     dispatch(setModalBackDrop(true));
     dispatch(setLoginDropDown(true));
   };
+
+  const logout = useLogout();
 
   return (
     <Wrapper>
@@ -56,7 +62,12 @@ const NavbarInfo = () => {
           <InfoLinks to={"/contact-us"}>Contact Us</InfoLinks>
           <TextDivider>|</TextDivider>
           <InfoLinks to={"/user/dashboard"}>My Account</InfoLinks>
-          {isLoggedIn === false ? (
+          {auth?.user ? (
+            <UserInfoContainer onClick={logout}>
+              <TextDivider>|</TextDivider>
+              <InfoLinks>Logout</InfoLinks>
+            </UserInfoContainer>
+          ) : (
             <UserInfoContainer onClick={() => handleDropDown()}>
               <TextDivider>|</TextDivider>
               <InfoIcon>
@@ -76,11 +87,6 @@ const NavbarInfo = () => {
                 </svg>
                 <InfoLinks>Login</InfoLinks>
               </InfoIcon>
-            </UserInfoContainer>
-          ) : (
-            <UserInfoContainer>
-              <TextDivider>|</TextDivider>
-              <InfoLinks>Logout</InfoLinks>
             </UserInfoContainer>
           )}
         </InfoContainer>

@@ -31,6 +31,8 @@ import MobileNavbar from "./components/Header/MobileNavbar/MobileNavbar";
 import MenuDropDown from "./components/Header/MenuDropDown/MenuDropDown";
 import CheckOut from "./components/CheckOut/CheckOut";
 import Order from "./pages/Order";
+import RequireAuth from "./components/RequireAuth";
+import PersistLogin from "./components/PersistLogin";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -65,13 +67,20 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/offers" element={<Offers />} />
-          <Route path="/checkout" element={<CheckOut />}></Route>
-          <Route path="/user/dashboard" element={<DashBoard />} />
-          <Route path="/user/my-orders" element={<MyOrders />} />
-          <Route path="/user/update-profile" element={<UpdateProfile />} />
-          <Route path="/user/change-password" element={<ChangePassword />} />
-          <Route path="/user/orders/:id" element={<Order />}></Route>
           <Route path="/categories/:name/:id" element={<Categories />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth />}>
+              <Route path="/checkout" element={<CheckOut />}></Route>
+              <Route path="/user/dashboard" element={<DashBoard />} />
+              <Route path="/user/my-orders" element={<MyOrders />} />
+              <Route path="/user/update-profile" element={<UpdateProfile />} />
+              <Route
+                path="/user/change-password"
+                element={<ChangePassword />}
+              />
+              <Route path="/user/orders/:id" element={<Order />}></Route>
+            </Route>
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

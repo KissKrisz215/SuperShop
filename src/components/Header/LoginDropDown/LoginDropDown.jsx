@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useContext } from "react";
 import {
   setLoginDropDown,
   setLoginFormType,
 } from "../../../store/UserDropDown/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import {
   Container,
   CloseButtonContainer,
@@ -12,7 +14,7 @@ import {
 } from "./LoginDropDown.styles";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import Form from "../Form/Form";
-import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../context/AuthProvider";
 
 const loginInputs = [
   {
@@ -60,6 +62,7 @@ const passwordInputs = [
 ];
 
 const LoginDropDown = () => {
+  const { auth } = useContext(AuthContext);
   const isLoginDropDown = useSelector((state) => state.loginDropDown.isActive);
   const formType = useSelector((state) => state.loginDropDown.formType);
   const dispatch = useDispatch();
@@ -119,6 +122,12 @@ const LoginDropDown = () => {
     default:
       formContent = <Form buttontext="Login" />;
   }
+
+  useEffect(() => {
+    if (auth.user) {
+      handleDropDownClose();
+    }
+  }, [auth.user]);
 
   return (
     <Container isLoginDropDown={isLoginDropDown}>

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, ProfileIcon } from "./UserToggle.styles";
+import { useContext } from "react";
+import {
+  Container,
+  ProfileIcon,
+  UserLinkContainer,
+  ProfileImage,
+} from "./UserToggle.styles";
 import { setLoginDropDown } from "../../../store/UserDropDown/actions";
 import LoginDropDown from "../LoginDropDown";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
+import AuthContext from "../../../context/AuthProvider";
 
 const UserToggle = () => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { auth } = useContext(AuthContext);
   const isLoginDropDown = useSelector((state) => state.loginDropDown.isActive);
   const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
   const dispatch = useDispatch();
@@ -16,7 +23,11 @@ const UserToggle = () => {
     dispatch(setLoginDropDown(true));
   };
 
-  if (!isLoggedIn) {
+  useEffect(() => {
+    console.log("Auth", auth.user);
+  }, [auth]);
+
+  if (!auth?.user) {
     return (
       <Container onClick={() => handleDropDown()}>
         <ProfileIcon>
@@ -41,9 +52,9 @@ const UserToggle = () => {
   }
 
   return (
-    <Container onClick={() => dispatch(setLoginDropDown())}>
-      <ProfileIcon></ProfileIcon>
-    </Container>
+    <UserLinkContainer to={"/user/dashboard"}>
+      <ProfileImage src={auth.image} />
+    </UserLinkContainer>
   );
 };
 

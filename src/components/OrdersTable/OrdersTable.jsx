@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -36,6 +37,7 @@ import {
   IconContainer,
   Icon,
 } from "./OrdersTable.styles";
+import AuthContext from "../../context/AuthProvider";
 
 const OrdersTable = ({ headers, isTableHeader }) => {
   const [orderData, setOrderData] = useState(null);
@@ -45,13 +47,13 @@ const OrdersTable = ({ headers, isTableHeader }) => {
   const [pendingOrders, setPendingOrders] = useState(0);
   const [processingOrders, setProcessingOrders] = useState(0);
   const [completeOrders, setCompleteOrders] = useState(0);
+  const { auth } = useContext(AuthContext);
 
   const getData = async () => {
     try {
       const { data } = await axios("http://localhost:3500/api/user/orders", {
         headers: {
-          "x-auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTUzZjdjMWFhNTk5OTM1MzI0ZWNhOGMiLCJpYXQiOjE3MDAxNTM1MjcsImV4cCI6MTcwMDE1NzEyN30.cbfXNzdit7uDGukMI3rWa2F9sJ15b1dfpb-Cb4PMHfo",
+          "x-auth-token": `${auth?.accessToken}`,
         },
       });
       setOrderData(data);
@@ -186,7 +188,7 @@ const OrdersTable = ({ headers, isTableHeader }) => {
               <TableRow>
                 <TableData>{orderData.id}</TableData>
                 <TableData>{formatDate(orderData.date)}</TableData>
-                <TableData>{orderData.paymentMethod}</TableData>
+                <TableData>{orderData.payment.paymentMethod}</TableData>
                 <StatusData
                   status={orderData.status === "Delivered" ? true : false}
                 >

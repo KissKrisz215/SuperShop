@@ -16,6 +16,8 @@ export const Container = styled.div`
   flex-direction: column;
   margin-top: 2rem;
   gap: 1.5rem;
+  padding: 0rem 0.5rem;
+  box-sizing: boder-box;
   @media only screen and ${breakpoints.device.xs} {
     flex-direction: row;
   }

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import useAuth from "../../../hooks/useAuth";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   LoginFormContainer,
   FormHeader,
@@ -22,9 +26,8 @@ import {
   SignUpLink,
   StyledFontAwesomeIcon,
 } from "./Form.styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoginFormType } from "../../../store/UserDropDown/actions";
-import axios from "axios";
 
 const Form = ({
   inputs,
@@ -36,6 +39,12 @@ const Form = ({
   linktext,
   apiUrl,
 }) => {
+  const { setAuth, persist, setPersist } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const store = useSelector((state) => state);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const handleFormPage = () => {
@@ -57,12 +66,36 @@ const Form = ({
     });
   };
 
-  const handleFormSubmit = async () => {
-    console.log(formData);
-    try {
-      const response = await axios.post(apiUrl, formData);
-    } catch (error) {
-      console.error("Error:", error.message);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      apiUrl === "https://super-shop-backend-five.vercel.app/api/auth/login"
+    ) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3500/api/auth/login",
+          formData
+        );
+        const accessToken = response?.data?.token;
+        const decodedToken = jwtDecode(accessToken);
+        setAuth({
+          user: formData?.email,
+          pwd: formData?.password,
+          accessToken: accessToken,
+          image: decodedToken.image,
+        });
+        setFormData({});
+        navigate(from, { replace: true });
+      } catch (error) {
+        console.error("Error:", error.message);
+        setFormData({});
+      }
+    } else {
+      try {
+        const response = await axios.post(apiUrl, formData);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
     }
   };
 
