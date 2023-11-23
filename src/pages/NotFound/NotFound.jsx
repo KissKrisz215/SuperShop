@@ -11,7 +11,7 @@ import Icons from "../../assets/index";
 const NotFound = () => {
   return (
     <Container>
-      <Image src={Icons.Icon404} />
+      <Image alt="404 Icon" src={Icons.Icon404} />
       <Header>Page is not found!</Header>
       <Description>
         Sorry! This page is not found! Please try again later.

@@ -49,7 +49,7 @@ const UserToggle = () => {
 
   return (
     <UserLinkContainer to={"/user/dashboard"}>
-      <ProfileImage src={auth.image} />
+      <ProfileImage alt="Profile Image" src={auth.image} />
     </UserLinkContainer>
   );
 };

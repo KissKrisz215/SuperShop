@@ -133,7 +133,10 @@ function Product() {
               <CategoryHeaderCurrent>{product.title.en}</CategoryHeaderCurrent>
             </ProductCategoryHeader>
             <ProductCard>
-              <ProductImage src={product.image[0]} />
+              <ProductImage
+                alt={`${product.title.en} Product Image`}
+                src={product.image[0]}
+              />
               <ProductDescription>
                 <ProductText>
                   <Header>{product.title.en}</Header>

@@ -24,7 +24,7 @@ const Navbar = ({ children }) => {
       <NavbarWrapper>
         <NavbarContainer>
           <NavbarLink to={"/"}>
-            <NavbarIcon src={Icons.LogoLight} />
+            <NavbarIcon alt="SuperShop Logo" src={Icons.LogoLight} />
           </NavbarLink>
           <SearchBar />
           <NavbarUserLinks>

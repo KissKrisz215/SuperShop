@@ -67,7 +67,10 @@ const NavbarDropDown = ({
                 onClick={() => setIsNavbarDropDown(false)}
               >
                 <CategoryContent>
-                  <CategoryIcon src={category.icon} />
+                  <CategoryIcon
+                    alt={`${category.name.en} Category`}
+                    src={category.icon}
+                  />
                   <CategoryHeader>{category.name.en}</CategoryHeader>
                 </CategoryContent>
               </CategoryItemInnerContainer>

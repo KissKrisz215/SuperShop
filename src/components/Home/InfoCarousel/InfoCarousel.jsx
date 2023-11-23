@@ -78,7 +78,7 @@ const InfoCarousel = () => {
         }}
       >
         {data.map((item, index) => (
-          <Carousel key={nanoid()} src={item.src}>
+          <Carousel key={nanoid()} src={item.src} alt={`${item.title}`}>
             <CarouselContent>
               <CarouselHeader>
                 <Header>{item.title}</Header>

@@ -154,7 +154,7 @@ const ContactUs = () => {
         </HeaderContainer>
         <FormWrapper>
           <FormImageContainer>
-            <FormImage src={Icons.IconForm} />
+            <FormImage alt="Form Icon" src={Icons.IconForm} />
           </FormImageContainer>
           <FormContainer>
             <FormHeader>For any suppoort just send your query</FormHeader>

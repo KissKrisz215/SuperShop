@@ -88,7 +88,7 @@ const ProductDropDown = () => {
           </DiscountContainer>
         )}
         <ProductImageContainer to={`/product/${product.title}`}>
-          <ProductImage src={product.image[0]} />
+          <ProductImage alt={`${product.title} Image`} src={product.image[0]} />
         </ProductImageContainer>
         <ProductContent>
           <Header>{product.title.en}</Header>

@@ -64,7 +64,7 @@ const MenuDropDown = () => {
       <HeaderContainer>
         <HeaderTitleContainer>
           <HeaderIcon to={"/"}>
-            <IconImage src={Icons.LogoDark2} />
+            <IconImage alt="SuperShop Logo" src={Icons.LogoDark2} />
           </HeaderIcon>
         </HeaderTitleContainer>
         <CloseButtonContainer onClick={() => handleDropDown()}>

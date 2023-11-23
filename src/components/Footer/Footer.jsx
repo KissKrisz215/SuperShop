@@ -140,13 +140,13 @@ const Footer = () => {
       <HeaderWrapper>
         <HeaderContainer>
           <ImageContainer>
-            <ImageLeft src={Icons.LogoShopping1} />
+            <ImageLeft alt="Footer Shopping Image" src={Icons.LogoShopping1} />
           </ImageContainer>
           <TextContainer>
-            <Header>Get Your Daily Needs From Our KachaBazar Store</Header>
+            <Header>Get Your Daily Needs From Our SuperShop Store</Header>
             <Description>
               There are many products you will find in our shop, Choose your
-              daily necessary product from our KachaBazar shop and get some
+              daily necessary product from our SuperShop shop and get some
               special offers.
             </Description>
             <LinkContainer>
@@ -154,15 +154,18 @@ const Footer = () => {
                 href={"https://www.apple.com/app-store/"}
                 target="_blank"
               >
-                <LinkImage src={Icons.LogoAppStore} />
+                <LinkImage alt="Apple Logo Image" src={Icons.LogoAppStore} />
               </LinkText>
               <LinkText href={"https://play.google.com/"} target="_blank">
-                <LinkImage src={Icons.LogoPlayStore} />
+                <LinkImage
+                  alt="Play Store Logo Image"
+                  src={Icons.LogoPlayStore}
+                />
               </LinkText>
             </LinkContainer>
           </TextContainer>
           <ImageContainer>
-            <ImageRight src={Icons.LogoShopping2} />
+            <ImageRight alt="Footer Shopping Image" src={Icons.LogoShopping2} />
           </ImageContainer>
         </HeaderContainer>
       </HeaderWrapper>
@@ -183,7 +186,7 @@ const Footer = () => {
               <FooterLink key={nanoid()} data={item} />
             ))}
           <AddressContainer>
-            <AddressLogo src={Icons.LogoDark} />
+            <AddressLogo alt="SuperShop Logo" src={Icons.LogoDark} />
             <AddressText>
               987 Andre Plain Suite High Street 838, Lake Hestertown, USA987
               Andre Plain Suite High Street 838, Lake Hestertown, USA
@@ -250,7 +253,7 @@ const Footer = () => {
             <PhoneNumber href="tel:+6599887766">+6599887766</PhoneNumber>
           </PhoneContainer>
           <PaymentContainer>
-            <PaymentLogo src={Icons.LogoPayment} />
+            <PaymentLogo alt="Payment Options Logo" src={Icons.LogoPayment} />
           </PaymentContainer>
         </SocialsContainer>
       </SocialsWrapper>

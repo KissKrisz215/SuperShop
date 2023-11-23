@@ -30,7 +30,7 @@ const ProductsItemText = () => {
             <Button>Download App</Button>
           </TextContainer>
           <ImageContainer>
-            <Image src={Icons.LogoDelivery} />
+            <Image alt="Delivery Logo" src={Icons.LogoDelivery} />
           </ImageContainer>
         </InnerContainer>
       </Container>

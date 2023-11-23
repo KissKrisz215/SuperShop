@@ -112,7 +112,7 @@ const AboutUs = () => {
             </TextCardWrapper>
           </TextContainer>
           <ImagesContainer>
-            <Image src={Icons.AboutLogo} />
+            <Image alt="About Logo" src={Icons.AboutLogo} />
           </ImagesContainer>
         </HeaderContainer>
         <TextDescriptionContainer>
@@ -148,7 +148,7 @@ const AboutUs = () => {
           </TextDescription>
         </TextDescriptionContainer>
         <BannerContainer>
-          <BannerImage src={Icons.AboutBanner} />
+          <BannerImage alt="About Logo" src={Icons.AboutBanner} />
         </BannerContainer>
       </Container>
       <TeamWrapper>
@@ -162,7 +162,10 @@ const AboutUs = () => {
             {teamMembers &&
               teamMembers.map((item) => (
                 <TeamMemberCard key={nanoid()}>
-                  <TeamMemberImg src={item.profileImg} />
+                  <TeamMemberImg
+                    alt={`${item.name} Profile`}
+                    src={item.profileImg}
+                  />
                   <TeamMemberName>{item.name}</TeamMemberName>
                   <TeamMemberTitle>{item.title}</TeamMemberTitle>
                 </TeamMemberCard>

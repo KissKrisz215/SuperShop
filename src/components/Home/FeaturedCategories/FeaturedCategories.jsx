@@ -30,7 +30,10 @@ const FeaturedCategories = () => {
           {data &&
             data.map((category) => (
               <CategoryItem key={nanoid()}>
-                <Logo src={category.icon} />
+                <Logo
+                  alt={`${category.name.en} Category`}
+                  src={category.icon}
+                />
                 <ContentContainer>
                   <Title to={`/categories/${category.name.en}/${category._id}`}>
                     {category.name.en}

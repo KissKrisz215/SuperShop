@@ -36,7 +36,11 @@ const Product = ({ data }) => {
   return (
     <Container>
       <ProductImageContainer>
-        <ProductImage onClick={handleDropDown} src={data.image[0]} />
+        <ProductImage
+          onClick={handleDropDown}
+          src={data.image[0]}
+          alt={`${data.title.en} Product Image`}
+        />
       </ProductImageContainer>
       <ProductContent>
         <ContentText>

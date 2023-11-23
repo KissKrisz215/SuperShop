@@ -120,7 +120,10 @@ const SearchBar = () => {
                     key={nanoid()}
                   >
                     <TextContainer>
-                      <ProductImage src={product.image[0]} />
+                      <ProductImage
+                        alt={`${product.title.en} Image`}
+                        src={product.image[0]}
+                      />
                       <DropDownText>{product.title.en}</DropDownText>
                     </TextContainer>
                     <PriceContainer>${product.prices.price}</PriceContainer>

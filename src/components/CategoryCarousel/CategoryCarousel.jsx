@@ -115,7 +115,10 @@ const CategoryCarousel = () => {
                 to={`/categories/${category.name.en}/${category._id}`}
               >
                 <InnerContainer>
-                  <CategoryImage src={category.icon} />
+                  <CategoryImage
+                    alt={`${category.name.en} Category`}
+                    src={category.icon}
+                  />
                   <CategoryTitle>{category.name.en}</CategoryTitle>
                 </InnerContainer>
               </CategoryContainer>

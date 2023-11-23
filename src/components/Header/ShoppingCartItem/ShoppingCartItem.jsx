@@ -25,7 +25,7 @@ const ShoppingCartItem = ({ product }) => {
   return (
     <Container>
       <Header>
-        <Icon src={product.image[0]} />
+        <Icon alt={`${product.title.en} Product`} src={product.image[0]} />
         <InfoContainer>
           <InfoTitle>{product.title.en}</InfoTitle>
           <InfoSubTitle>Item Price ${product.prices.price}</InfoSubTitle>

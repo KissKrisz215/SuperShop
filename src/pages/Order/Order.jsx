@@ -116,7 +116,7 @@ const Order = () => {
                 </StatusTextContainer>
               </BodyHeaderItem>
               <BodyHeaderItem>
-                <HeaderIcon src={Icons.LogoDark} />
+                <HeaderIcon alt="SuperStore Logo" src={Icons.LogoDark} />
                 <HeaderDescription>
                   59 Station Rd, Purls Bridge, United Kingdom
                 </HeaderDescription>

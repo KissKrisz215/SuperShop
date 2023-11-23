@@ -55,7 +55,7 @@ const CouponCard = ({ coupon, height, width }) => {
     <Wrapper height={height}>
       <Container height={height}>
         <CouponInfo>
-          <CouponImage src={coupon.logo} />
+          <CouponImage alt="Coupon Image" src={coupon.logo} />
           <CouponTextContainer>
             <CouponTextHeader>
               <HeaderPrice>
