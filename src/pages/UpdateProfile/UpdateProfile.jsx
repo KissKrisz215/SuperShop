@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import UserHeader from "../../components/UserHeader";
 import {
   Container,
@@ -18,7 +19,6 @@ import {
   Input,
   ErrorMessage,
 } from "./UpdateProfile.styles";
-import axios from "axios";
 
 const UpdateProfile = () => {
   const initialFormData = {
@@ -110,7 +110,6 @@ const UpdateProfile = () => {
     e.preventDefault();
 
     if (errors.email.length === 0 && errors.phoneNumber.length === 0) {
-      console.log("Form submitted with data:", formData);
       handleData(formData);
       setFormData(initialFormData);
     }
@@ -127,7 +126,6 @@ const UpdateProfile = () => {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

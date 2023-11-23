@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import {
   Container,
   CloseButton,
@@ -29,13 +30,30 @@ import {
 import { setModalBackDrop } from "../../store/ModalBackDrop/actions";
 import { setProductDropDown } from "../../store/ProductDropDown/actions";
 import QuantityButton from "../Header/QuantityButton";
+import { increaseQuantity } from "../../store/ShoppingCartItems/actions";
 
 const ProductDropDown = () => {
   const isActive = useSelector((state) => state.product.isDropDown);
   const product = useSelector((state) => state.product.data);
   const isModalActive = useSelector((state) => state.ModalBackDrop);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+
+  const handleAddToCard = () => {
+    dispatch(increaseQuantity(product, quantity));
+    setQuantity(1);
+  };
+
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity - 1 > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   const handleDropDownClose = () => {
     dispatch(setProductDropDown(false));
@@ -46,7 +64,6 @@ const ProductDropDown = () => {
       if (!isModalActive) {
         dispatch(setModalBackDrop(true));
       }
-      console.log(product);
       document.body.style.overflow = "hidden";
     } else {
       dispatch(setModalBackDrop(false));
@@ -92,12 +109,14 @@ const ProductDropDown = () => {
               buttonHeight={"100%"}
               buttonWidth={"50px"}
               height={"50px"}
-              quantity={5}
+              quantity={quantity}
               position="static"
               border={"1px solid #D1D5DB"}
               fontSize={"0.85rem"}
+              increaseFunction={handleIncreaseQuantity}
+              decreaseFunction={handleDecreaseQuantity}
             />
-            <Button>Add to Cart</Button>
+            <Button onClick={handleAddToCard}>Add to Cart</Button>
           </ButtonsContainer>
           <ProductInfo>
             <ProductInfoText>
@@ -112,13 +131,18 @@ const ProductDropDown = () => {
                   product.tag.map((tagString) => {
                     const tags = JSON.parse(tagString);
                     return tags.map((item, index) => (
-                      <ProductInfoTag key={index}>{item}</ProductInfoTag>
+                      <ProductInfoTag key={nanoid()}>{item}</ProductInfoTag>
                     ));
                   })}
               </ProductInfoTagContainer>
             </ProductInfoText>
             <ProductInfoButtonContainer>
-              <ProductInfoButton>More Info</ProductInfoButton>
+              <ProductInfoButton
+                onClick={() => handleDropDownClose()}
+                to={`/product/${product._id}`}
+              >
+                More Info
+              </ProductInfoButton>
             </ProductInfoButtonContainer>
           </ProductInfo>
         </ProductContent>

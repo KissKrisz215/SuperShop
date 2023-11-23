@@ -1,9 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Container, ContainerButtons, NavbarLink } from "./MobileNavbar.styles";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import UserToggle from "../UserToggle";
 import { setMenuDropDownOpen } from "../../../store/MenuDropDown/actions";
-import { useDispatch } from "react-redux";
 
 const MobileNavbar = () => {
   const dispatch = useDispatch();

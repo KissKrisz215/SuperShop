@@ -1,4 +1,5 @@
 import React from "react";
+import { nanoid } from "nanoid";
 import HeaderItem from "../../components/HeaderItem";
 import {
   Container,
@@ -100,7 +101,7 @@ const AboutUs = () => {
             <TextCardWrapper>
               {textCards &&
                 textCards.map((card) => (
-                  <TextCardContainer>
+                  <TextCardContainer key={nanoid()}>
                     <TextCardTitle>{card.subHeader}</TextCardTitle>
                     <TextCardSubTitle>{card.title}</TextCardSubTitle>
                     <TextCardDescription>
@@ -160,7 +161,7 @@ const AboutUs = () => {
           <TeamMembersContainer>
             {teamMembers &&
               teamMembers.map((item) => (
-                <TeamMemberCard>
+                <TeamMemberCard key={nanoid()}>
                   <TeamMemberImg src={item.profileImg} />
                   <TeamMemberName>{item.name}</TeamMemberName>
                   <TeamMemberTitle>{item.title}</TeamMemberTitle>

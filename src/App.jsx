@@ -12,7 +12,6 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Faq from "./pages/Faq";
 import Offers from "./pages/Offers";
 import DashBoard from "./pages/DashBoard";
 import MyOrders from "./pages/MyOrders";
@@ -33,6 +32,7 @@ import CheckOut from "./components/CheckOut/CheckOut";
 import Order from "./pages/Order";
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./components/PersistLogin";
+import Product from "./pages/Product";
 
 function App() {
   const isModalBackDrop = useSelector((state) => state.ModalBackDrop);
@@ -65,9 +65,9 @@ function App() {
             element={<TermsAndConditions />}
           />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/faq" element={<Faq />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/categories/:name/:id" element={<Categories />} />
+          <Route path="/product/:id" element={<Product />}></Route>
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth />}>
               <Route path="/checkout" element={<CheckOut />}></Route>

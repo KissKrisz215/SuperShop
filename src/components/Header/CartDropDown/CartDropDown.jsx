@@ -63,7 +63,7 @@ const CartDropDown = () => {
   }, [CartDropDown]);
 
   return (
-    <Container ref={cartRef} CartDropDown={CartDropDown}>
+    <Container ref={cartRef} cartdropdown={CartDropDown}>
       <HeaderContainer>
         <HeaderTitleContainer>
           <HeaderIcon>
@@ -113,7 +113,9 @@ const CartDropDown = () => {
       </HeaderContainer>
       <ContentContainer>
         {products.length > 0 ? (
-          products.map((item) => <ShoppingCartItem product={item} />)
+          products.map((item) => (
+            <ShoppingCartItem id={nanoid()} product={item} />
+          ))
         ) : (
           <CartEmptyArray>
             <IconContainer>

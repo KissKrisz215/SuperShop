@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import { Container, Header, CouponCardContainer } from "./CouponInfo.styles";
 import CouponCard from "../CouponCard";
 
@@ -11,7 +12,9 @@ const CouponInfo = () => {
       <Header>Latest Super Discount Active Coupon Code</Header>
       <CouponCardContainer>
         {data &&
-          data.slice(2, 4).map((coupon) => <CouponCard coupon={coupon} />)}
+          data
+            .slice(2, 4)
+            .map((coupon) => <CouponCard key={nanoid()} coupon={coupon} />)}
       </CouponCardContainer>
     </Container>
   );

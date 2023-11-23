@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Header,
@@ -7,7 +8,6 @@ import {
   Title,
   Text,
 } from "./CartInfo.styles";
-import { useDispatch, useSelector } from "react-redux";
 import { setDropDownOpen } from "../../../store/CartDropDown/actions";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 

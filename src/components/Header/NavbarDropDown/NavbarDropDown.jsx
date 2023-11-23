@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   CategoriesContainer,
@@ -53,14 +54,14 @@ const NavbarDropDown = ({
     <Wrapper
       ref={categoryRef}
       position={position}
-      boxShadow={boxShadow}
+      boxshadow={boxShadow}
       border={border}
       width={width}
     >
       <CategoriesContainer gap={gap}>
         {categories &&
           categories.map((category) => (
-            <CategoryItem key={category.id}>
+            <CategoryItem key={nanoid()}>
               <CategoryItemInnerContainer
                 to={`/categories/${category.name.en}/${category._id}`}
                 onClick={() => setIsNavbarDropDown(false)}
@@ -100,6 +101,7 @@ const NavbarDropDown = ({
                   <SubCategoryContainer
                     onClick={() => setIsNavbarDropDown(false)}
                     to={`/categories/${item.name.en}/${item._id}`}
+                    key={nanoid()}
                   >
                     <SubCategoryHeader> - {item.name.en}</SubCategoryHeader>
                   </SubCategoryContainer>

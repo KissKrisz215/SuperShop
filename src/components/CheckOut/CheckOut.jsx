@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   Container,
@@ -342,7 +343,9 @@ const CheckOut = () => {
           <OrderSummaryHeader>Order Summary</OrderSummaryHeader>
           <ProductContainer>
             {products.length > 0 &&
-              products.map((item) => <ShoppingCartItem product={item} />)}
+              products.map((item) => (
+                <ShoppingCartItem key={nanoid()} product={item} />
+              ))}
             {products.length === 0 && (
               <CartErrorMessageContainer>
                 <Icon>

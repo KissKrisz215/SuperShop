@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   border-radius: 0.4rem;
   top: calc(100% + 0.3rem);
   box-shadow: ${(props) =>
-    props.boxShadow ||
+    props.boxshadow ||
     "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)"};
   padding: 1rem 1rem 2.5rem;
   border: ${(props) => props.border || "1px solid rgba(0, 0, 0, 0.1)"};

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { nanoid } from "nanoid";
 import useAuth from "../../../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   LoginFormContainer,
   FormHeader,
@@ -26,7 +28,6 @@ import {
   SignUpLink,
   StyledFontAwesomeIcon,
 } from "./Form.styles";
-import { useDispatch, useSelector } from "react-redux";
 import { setLoginFormType } from "../../../store/UserDropDown/actions";
 
 const Form = ({
@@ -113,7 +114,7 @@ const Form = ({
         <InputsContainer>
           {inputs &&
             inputs.map((item) => (
-              <InputWrapper>
+              <InputWrapper key={nanoid()}>
                 <InputHeader>{item.label}</InputHeader>
                 <InputContainer>
                   <InputIcon>

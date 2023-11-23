@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   Container,
@@ -10,7 +12,6 @@ import {
   ArrowLeftButton,
   ArrowRightButton,
 } from "./CategoryCarousel.styles";
-import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -110,6 +111,7 @@ const CategoryCarousel = () => {
           {categories &&
             categories.map((category) => (
               <CategoryContainer
+                key={nanoid()}
                 to={`/categories/${category.name.en}/${category._id}`}
               >
                 <InnerContainer>

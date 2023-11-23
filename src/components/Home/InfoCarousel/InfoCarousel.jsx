@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import {
   Container,
   Indicators,
@@ -56,8 +57,7 @@ const InfoCarousel = () => {
     setSlide((slide - 1 + data.length) % data.length);
   };
 
-  // Autoplay configuration
-  const autoplayDelay = 3000; // 5 seconds
+  const autoplayDelay = 3000;
 
   useEffect(() => {
     const autoplayInterval = setInterval(nextSlide, autoplayDelay);
@@ -78,7 +78,7 @@ const InfoCarousel = () => {
         }}
       >
         {data.map((item, index) => (
-          <Carousel key={index} src={item.src}>
+          <Carousel key={nanoid()} src={item.src}>
             <CarouselContent>
               <CarouselHeader>
                 <Header>{item.title}</Header>
@@ -93,7 +93,7 @@ const InfoCarousel = () => {
       <Indicators>
         {data.map((item, index) => (
           <Indicator
-            key={index}
+            key={nanoid()}
             active={slide === index ? true : false}
             onClick={() => setSlide(index)}
           ></Indicator>

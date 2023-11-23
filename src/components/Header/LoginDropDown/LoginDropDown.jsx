@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import {
   setLoginDropDown,
   setLoginFormType,
 } from "../../../store/UserDropDown/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import {
   Container,
   CloseButtonContainer,
@@ -130,7 +130,7 @@ const LoginDropDown = () => {
   }, [auth.user]);
 
   return (
-    <Container isLoginDropDown={isLoginDropDown}>
+    <Container islogindropdown={isLoginDropDown}>
       <CloseButtonContainer onClick={handleDropDownClose}>
         <CloseButton>
           <svg

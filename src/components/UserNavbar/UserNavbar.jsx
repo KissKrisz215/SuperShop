@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nanoid } from "nanoid";
 import {
   Container,
   NavbarLinksContainer,
@@ -6,7 +8,6 @@ import {
   NavbarLinkTitle,
   CustomFontAwesome,
 } from "./UserNavbar.styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faGear,
@@ -43,7 +44,7 @@ const UserNavbar = () => {
       <NavbarLinksContainer>
         {links &&
           links.map((link) => (
-            <NavbarLinkContainer to={link.link}>
+            <NavbarLinkContainer key={nanoid()} to={link.link}>
               <CustomFontAwesome icon={link.icon} />
               <NavbarLinkTitle>{link.title}</NavbarLinkTitle>
             </NavbarLinkContainer>

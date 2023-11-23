@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderItem from "../../components/HeaderItem";
 import { Container, Wrapper, CouponContainer, Coupon } from "./Offers.styles";
@@ -22,7 +23,7 @@ const Offers = () => {
             {coupons &&
               coupons.data.slice(0, 4).map((item) => (
                 <Coupon>
-                  <CouponCard height={"100%"} coupon={item} />
+                  <CouponCard key={nanoid()} height={"100%"} coupon={item} />
                 </Coupon>
               ))}
           </CouponContainer>

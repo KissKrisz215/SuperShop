@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nanoid } from "nanoid";
 import {
   faEnvelope,
   faBell,
@@ -110,7 +111,6 @@ const ContactUs = () => {
     if (Object.keys(newFormErrors).length > 0) {
       setFormErrors(newFormErrors);
     } else {
-      console.log("Form submitted with data:", formData);
       setFormData({
         email: "",
         name: "",
@@ -132,7 +132,7 @@ const ContactUs = () => {
         <HeaderContainer>
           {contactCards &&
             contactCards.map((item) => (
-              <ContactCard>
+              <ContactCard key={nanoid()}>
                 <CustomFontAwesome icon={item.icon} />
                 <ContactHeader>{item.title}</ContactHeader>
                 <ContactDescription>

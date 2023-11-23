@@ -219,7 +219,9 @@ export const ProductInfoButton = styled(Link)`
   color: ${(props) => props.theme.orangeDark};
 `;
 
-export const ProductInfoButtonContainer = styled.div``;
+export const ProductInfoButtonContainer = styled(Link)`
+  text-decoration: none;
+`;
 
 export const DiscountContainer = styled.div`
   position: absolute;

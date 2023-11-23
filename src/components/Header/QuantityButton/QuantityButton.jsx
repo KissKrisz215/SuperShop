@@ -18,6 +18,8 @@ const QuantityButton = ({
   product,
   background,
   color,
+  increaseFunction,
+  decreaseFunction,
 }) => {
   const dispatch = useDispatch();
 
@@ -35,7 +37,11 @@ const QuantityButton = ({
         buttonWidth={buttonWidth}
         buttonHeight={buttonHeight}
         borderRight={border}
-        onClick={() => dispatch(decreaseQuantity(product))}
+        onClick={() =>
+          decreaseFunction
+            ? decreaseFunction()
+            : dispatch(decreaseQuantity(product))
+        }
       >
         <svg
           stroke="currentColor"
@@ -56,7 +62,11 @@ const QuantityButton = ({
         buttonWidth={buttonWidth}
         buttonHeight={buttonHeight}
         borderLeft={border}
-        onClick={() => dispatch(increaseQuantity(product))}
+        onClick={() =>
+          increaseFunction
+            ? increaseFunction()
+            : dispatch(increaseQuantity(product))
+        }
       >
         <svg
           stroke="currentColor"

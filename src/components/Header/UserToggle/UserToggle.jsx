@@ -23,10 +23,6 @@ const UserToggle = () => {
     dispatch(setLoginDropDown(true));
   };
 
-  useEffect(() => {
-    console.log("Auth", auth.user);
-  }, [auth]);
-
   if (!auth?.user) {
     return (
       <Container onClick={() => handleDropDown()}>

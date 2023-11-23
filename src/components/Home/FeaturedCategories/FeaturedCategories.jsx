@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   Container,
@@ -13,7 +15,6 @@ import {
   Title,
   Icon,
 } from "./FeaturedCategories.styles";
-import { useSelector } from "react-redux";
 
 const FeaturedCategories = () => {
   const { data } = useSelector((state) => state.categories);
@@ -28,7 +29,7 @@ const FeaturedCategories = () => {
         <CategoryContainer>
           {data &&
             data.map((category) => (
-              <CategoryItem>
+              <CategoryItem key={nanoid()}>
                 <Logo src={category.icon} />
                 <ContentContainer>
                   <Title to={`/categories/${category.name.en}/${category._id}`}>
@@ -38,6 +39,7 @@ const FeaturedCategories = () => {
                     <SubTitleContainer>
                       {category.children.slice(0, 3).map((item) => (
                         <SubTitle
+                          key={nanoid()}
                           to={`/categories/${item.name.en}/${item._id}`}
                         >
                           <Icon>

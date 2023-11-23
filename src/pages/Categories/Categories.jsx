@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   Container,
@@ -85,7 +86,6 @@ const Categories = () => {
 
   useEffect(() => {
     getProducts();
-    console.log(allProducts);
   }, [id]);
 
   return (
@@ -94,7 +94,7 @@ const Categories = () => {
         <HeaderContainer>
           {CategoryLinks.map((category) => (
             <CategoryHeader
-              key={category.title}
+              key={nanoid()}
               link={category.link}
               image={category.img}
               title={category.title}

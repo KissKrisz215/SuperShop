@@ -4,25 +4,24 @@ import { setLoginDropDown } from "../store/UserDropDown/actions";
 import { setModalBackDrop } from "../store/ModalBackDrop/actions";
 
 const RequireAuth = () => {
-    const token = null;
-    const location = useLocation();
-    const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
-    const dispatch = useDispatch();
+  const token = null;
+  const location = useLocation();
+  const ModalBackDrop = useSelector((state) => state.ModalBackDrop);
+  const dispatch = useDispatch();
 
-        const handleDropDown = () => {
-        dispatch(setModalBackDrop(!ModalBackDrop));
-        dispatch(setLoginDropDown(true));
-      };
+  const handleDropDown = () => {
+    dispatch(setModalBackDrop(!ModalBackDrop));
+    dispatch(setLoginDropDown(true));
+  };
 
-
-    return (
-                    token
-                        ? <Outlet />
-                        : <><Navigate to="/" state={{ from: location }} replace />
-                        {handleDropDown()}
-                        </>
-    )
-}
-
+  return token ? (
+    <Outlet />
+  ) : (
+    <>
+      <Navigate to="/" state={{ from: location }} replace />
+      {handleDropDown()}
+    </>
+  );
+};
 
 export default RequireAuth;

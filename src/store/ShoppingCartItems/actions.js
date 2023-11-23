@@ -76,8 +76,7 @@ export const decreaseQuantity = (item) => (dispatch, getState) => {
     }
   }
 };
-
-export const increaseQuantity = (item) => (dispatch, getState) => {
+export const increaseQuantity = (item, quantityVal) => (dispatch, getState) => {
   const state = getState();
   const productsArray = state.shoppingCart;
 
@@ -90,8 +89,12 @@ export const increaseQuantity = (item) => (dispatch, getState) => {
       product._id === item._id
         ? {
             ...product,
-            quantity: product.quantity + 1,
-            finalPrice: (product.quantity + 1) * product.prices.price,
+            quantity:
+              (quantityVal !== undefined ? quantityVal : 1) + product.quantity,
+            finalPrice:
+              ((quantityVal !== undefined ? quantityVal : 1) +
+                product.quantity) *
+              product.prices.price,
           }
         : product
     );
@@ -99,6 +102,18 @@ export const increaseQuantity = (item) => (dispatch, getState) => {
     dispatch({
       type: SET_CART_DROPDOWN,
       payload: updatedProductsArray,
+    });
+  } else {
+    const newProduct = {
+      ...item,
+      quantity: quantityVal !== undefined ? quantityVal : 1,
+      finalPrice:
+        (quantityVal !== undefined ? quantityVal : 1) * item.prices.price,
+    };
+
+    dispatch({
+      type: SET_CART_DROPDOWN,
+      payload: [...productsArray, newProduct],
     });
   }
 };

@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import breakpoints from "../../styles/breakpoints";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   min-height: 500px;
-  ${"" /* max-height: 1000px; */}
-  ${"" /* height: 100%; */}
   overflow: scroll;
 `;
 
@@ -54,7 +53,8 @@ export const PriceText = styled.span`
   font-weight: 700;
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
+  text-decoration: none;
   font-size: 0.65rem;
   color: ${(props) => props.theme.darkGreen};
   background-color: #dafae5;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nanoid } from "nanoid";
 import {
   faCartShopping,
   faRotate,
@@ -161,7 +162,7 @@ const OrdersTable = ({ headers, isTableHeader }) => {
       {isTableHeader && (
         <TableHeaderContainer>
           {tableHeaders.map((header) => (
-            <TableHeaderInfo>
+            <TableHeaderInfo key={nanoid()}>
               <CustomFontAwesome
                 background={header.background}
                 color={header.color}
@@ -182,10 +183,12 @@ const OrdersTable = ({ headers, isTableHeader }) => {
           <Container>
             <TableHeaderRow>
               {headers &&
-                headers.map((header) => <TableHeader>{header}</TableHeader>)}
+                headers.map((header) => (
+                  <TableHeader key={nanoid()}>{header}</TableHeader>
+                ))}
             </TableHeaderRow>
             {orderData.slice(...getSliceIndices()).map((orderData) => (
-              <TableRow>
+              <TableRow key={nanoid()}>
                 <TableData>{orderData.id}</TableData>
                 <TableData>{formatDate(orderData.date)}</TableData>
                 <TableData>{orderData.payment.paymentMethod}</TableData>
@@ -195,11 +198,13 @@ const OrdersTable = ({ headers, isTableHeader }) => {
                   {orderData.status}
                 </StatusData>
                 <TableData>
-                  <PriceText>${orderData.totalAmount}</PriceText>
+                  <PriceText>${orderData.totalAmount.toFixed(2)}</PriceText>
                 </TableData>
                 {headers.includes("Action") && (
                   <TableData>
-                    <Button>Details</Button>
+                    <Button to={`/user/orders/${orderData._id}`}>
+                      Details
+                    </Button>
                   </TableData>
                 )}
               </TableRow>

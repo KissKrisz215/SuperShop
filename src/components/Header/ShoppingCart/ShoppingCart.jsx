@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, CartIcon, NumberContainer } from "./ShoppingCart.styles";
 import CartDropDown from "../CartDropDown";
-import { useDispatch, useSelector } from "react-redux";
 import { setDropDownOpen } from "../../../store/CartDropDown/actions";
 import CartInfo from "../CartInfo/CartInfo";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";

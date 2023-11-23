@@ -1,11 +1,83 @@
-import React from "react";
-import { Wrapper, InputContainer, Input, SearchIcon } from "./SearchBar.styles";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { nanoid } from "nanoid";
+import {
+  Wrapper,
+  InputContainer,
+  Input,
+  SearchIcon,
+  DropDownContainer,
+  DropDownItem,
+  DropDownText,
+  ProductImage,
+  PriceContainer,
+  TextContainer,
+  ErrorMessage,
+  ErrorText,
+} from "./SearchBar.styles";
 
 const SearchBar = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [searchDropDown, setSearchDropDown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [products, setProducts] = useState(null);
+  const dropDownRef = useRef(null);
+
+  const searchProducts = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3500/api/products/search",
+        { searchValue }
+      );
+      setProducts(data);
+      setIsLoading(false);
+      setErrorMessage(false);
+    } catch (error) {
+      setIsLoading(false);
+      setErrorMessage(true);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+        setSearchDropDown(false);
+        setSearchValue("");
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [dropDownRef]);
+
+  useEffect(() => {
+    if (searchValue.length > 0) {
+      setSearchDropDown(true);
+      searchProducts(searchValue);
+    } else {
+      setSearchDropDown(false);
+      setProducts(null);
+    }
+  }, [searchValue]);
+
+  const closeDropDown = () => {
+    setSearchValue("");
+    setSearchDropDown(false);
+  };
+
   return (
     <Wrapper>
       <InputContainer>
-        <Input placeholder="Search for products (e.g. fish, apple, oil)" />
+        <Input
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Search for products (e.g. fish, apple, oil)"
+        />
         <SearchIcon>
           <svg
             stroke="currentColor"
@@ -32,6 +104,32 @@ const SearchBar = () => {
           </svg>
         </SearchIcon>
       </InputContainer>
+      {searchDropDown === true && (
+        <DropDownContainer ref={dropDownRef}>
+          {errorMessage ? (
+            <ErrorMessage>
+              <ErrorText>No Results</ErrorText>
+            </ErrorMessage>
+          ) : (
+            <>
+              {products &&
+                products.map((product) => (
+                  <DropDownItem
+                    onClick={() => closeDropDown()}
+                    to={`/product/${product._id}`}
+                    key={nanoid()}
+                  >
+                    <TextContainer>
+                      <ProductImage src={product.image[0]} />
+                      <DropDownText>{product.title.en}</DropDownText>
+                    </TextContainer>
+                    <PriceContainer>${product.prices.price}</PriceContainer>
+                  </DropDownItem>
+                ))}
+            </>
+          )}
+        </DropDownContainer>
+      )}
     </Wrapper>
   );
 };

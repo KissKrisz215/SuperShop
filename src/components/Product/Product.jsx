@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   ProductImage,
@@ -14,7 +15,6 @@ import {
   DiscountedPrice,
   QuantityButtonContainer,
 } from "./Product.styles";
-import { useDispatch, useSelector } from "react-redux";
 import { setProductDropDown } from "../../store/ProductDropDown/actions";
 import { addDropDownProducts } from "../../store/ShoppingCartItems/actions";
 import QuantityButton from "../Header/QuantityButton";

@@ -6,6 +6,7 @@ import {
   faCreditCard,
   faGift,
 } from "@fortawesome/free-solid-svg-icons";
+import { nanoid } from "nanoid";
 import {
   Wrapper,
   Container,
@@ -168,7 +169,7 @@ const Footer = () => {
       <FooterInfoWrapper>
         <FooterInfoContainer>
           {footerInfo.map((item) => (
-            <FooterInfo>
+            <FooterInfo key={nanoid()}>
               <CustomFontAwesomeIcon icon={item.icon} />
               {item.title}
             </FooterInfo>
@@ -177,7 +178,10 @@ const Footer = () => {
       </FooterInfoWrapper>
       <FooterLinksWrapper>
         <FooterLinksContainer>
-          {footerLinks && footerLinks.map((item) => <FooterLink data={item} />)}
+          {footerLinks &&
+            footerLinks.map((item) => (
+              <FooterLink key={nanoid()} data={item} />
+            ))}
           <AddressContainer>
             <AddressLogo src={Icons.LogoDark} />
             <AddressText>

@@ -55,7 +55,6 @@ const ChangePassword = () => {
           newPassword: data.newPassword,
         }
       );
-      console.log("POST request successful:", response.data);
     } catch (error) {
       console.error("Error making POST request:", error);
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Wrapper,
   Container,
@@ -12,7 +13,6 @@ import {
   UserInfoContainer,
   InfoIcon,
 } from "./NavbarInfo.styles";
-import { useSelector, useDispatch } from "react-redux";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import { setLoginDropDown } from "../../../store/UserDropDown/actions";
 import AuthContext from "../../../context/AuthProvider";

@@ -10,7 +10,7 @@ export const Container = styled.div`
   height: 100%;
   background: #ffff;
   transform: ${(props) =>
-    props.CartDropDown ? "translateX(0)" : "translateX(100%)"};
+    props.cartdropdown ? "translateX(0)" : "translateX(100%)"};
   transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
   z-index: 1000;
 `;
