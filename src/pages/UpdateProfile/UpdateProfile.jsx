@@ -118,7 +118,7 @@ const UpdateProfile = () => {
   const handleData = async (data) => {
     try {
       const response = await axios.put(
-        "http://localhost:3500/api/user/update",
+        "https://super-shop-backend-five.vercel.app/api/user/update",
         data,
         {
           headers: {

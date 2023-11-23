@@ -27,7 +27,7 @@ const SearchBar = () => {
   const searchProducts = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3500/api/products/search",
+        "https://super-shop-backend-five.vercel.app/api/products/search",
         { searchValue }
       );
       setProducts(data);

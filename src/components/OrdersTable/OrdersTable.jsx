@@ -52,11 +52,14 @@ const OrdersTable = ({ headers, isTableHeader }) => {
 
   const getData = async () => {
     try {
-      const { data } = await axios("http://localhost:3500/api/user/orders", {
-        headers: {
-          "x-auth-token": `${auth?.accessToken}`,
-        },
-      });
+      const { data } = await axios(
+        "https://super-shop-backend-five.vercel.app/api/user/orders",
+        {
+          headers: {
+            "x-auth-token": `${auth?.accessToken}`,
+          },
+        }
+      );
       setOrderData(data);
     } catch (err) {
       console.log(err);

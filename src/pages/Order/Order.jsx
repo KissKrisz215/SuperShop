@@ -69,7 +69,7 @@ const Order = () => {
     try {
       setIsLoading(true);
       const { data } = await axios(
-        `http://localhost:3500/api/user/order/${id}`,
+        `https://super-shop-backend-five.vercel.app/api/user/order/${id}`,
         {
           headers: {
             "x-auth-token": `${auth?.accessToken}`,

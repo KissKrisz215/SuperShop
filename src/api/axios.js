@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:3500/api/auth/login";
+const BASE_URL = "https://super-shop-backend-five.vercel.app/api/auth/login";
 
 export default axios.create({
   baseURL: BASE_URL,

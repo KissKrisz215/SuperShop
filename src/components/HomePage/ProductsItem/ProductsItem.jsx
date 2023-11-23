@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Wrapper, Container, Title, Description } from "./ProductsItem.styles";
 import Products from "../../Product/Products";
 

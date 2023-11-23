@@ -139,7 +139,7 @@ const CheckOut = () => {
     }
     try {
       const { data } = await axios.post(
-        `http://localhost:3500/api/user/order`,
+        `https://super-shop-backend-five.vercel.app/api/user/order`,
         formData,
         {
           headers: {

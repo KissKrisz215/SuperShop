@@ -62,7 +62,9 @@ function Product() {
 
   const getProduct = async () => {
     try {
-      const { data } = await axios(`http://localhost:3500/api/products/${id}`);
+      const { data } = await axios(
+        `https://super-shop-backend-five.vercel.app/api/products/${id}`
+      );
       setProduct(data);
     } catch (error) {
       console.log(error);
@@ -72,7 +74,7 @@ function Product() {
   const getRelatedProducts = async () => {
     try {
       const { data } = await axios(
-        `http://localhost:3500/api/categories/${product.category._id}`
+        `https://super-shop-backend-five.vercel.app/api/categories/${product.category._id}`
       );
       setRelatedProducts(data.slice(0, 12));
     } catch (error) {
