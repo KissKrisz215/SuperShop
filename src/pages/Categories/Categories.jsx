@@ -17,10 +17,10 @@ import {
   ProductsButtonContainer,
   ProductQuantity,
 } from "./Categories.styles";
-import CategoryHeader from "../../components/CategoryHeader/CategoryHeader";
+import CategoryHeader from "../../components/ProductsPage/CategoryHeader";
 import Icons from "../../assets/index";
-import CategoryCarousel from "../../components/CategoryCarousel";
-import Products from "../../components/Products";
+import CategoryCarousel from "../../components/ProductsPage/CategoryCarousel";
+import Products from "../../components/Product/Products";
 
 const CategoryLinks = [
   {

@@ -6,7 +6,7 @@ import {
   faBell,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import HeaderItem from "../../components/HeaderItem";
+import HeaderItem from "../../components/Header/HeaderItem";
 import {
   Container,
   HeaderContainer,

@@ -1,5 +1,5 @@
 import React from "react";
-import UserHeader from "../../components/UserHeader";
+import UserHeader from "../../components/Header/UserHeader";
 import OrdersTable from "../../components/OrdersTable/OrdersTable";
 
 const tableHeaders = ["ID", "OrderTime", "Method", "Status", "Total", "Action"];

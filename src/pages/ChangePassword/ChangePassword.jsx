@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import UserHeader from "../../components/UserHeader";
+import UserHeader from "../../components/Header/UserHeader";
 import {
   FormWrapper,
   InputContainer,

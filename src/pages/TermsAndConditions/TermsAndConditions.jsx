@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderItem from "../../components/HeaderItem";
+import HeaderItem from "../../components/Header/HeaderItem";
 import {
   Container,
   Title,

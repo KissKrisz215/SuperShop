@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Container, ContainerButtons, NavbarLink } from "./MobileNavbar.styles";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import ShoppingCart from "../../ShoppingCart/ShoppingCart";
 import UserToggle from "../UserToggle";
 import { setMenuDropDownOpen } from "../../../store/MenuDropDown/actions";
 

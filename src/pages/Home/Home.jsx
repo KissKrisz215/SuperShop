@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "./Home.styles";
-import Info from "../../components/Home/Info";
-import FeaturedCategories from "../../components/Home/FeaturedCategories";
-import ProductsItem from "../../components/Home/ProductsItem/ProductsItem";
-import ProductsItemText from "../../components/Home/ProductsItemText";
+import Info from "../../components/HomePage/Info";
+import FeaturedCategories from "../../components/HomePage/FeaturedCategories";
+import ProductsItem from "../../components/HomePage/ProductsItem/ProductsItem";
+import ProductsItemText from "../../components/HomePage/ProductsItemText";
 
 const Home = () => {
   const [popularProducts, setPopularProducts] = useState(null);

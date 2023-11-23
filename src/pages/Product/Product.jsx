@@ -34,9 +34,9 @@ import {
   RelatedProductsContainer,
   RelatedProductsHeader,
 } from "./Product.styles";
-import QuantityButton from "../../components/Header/QuantityButton";
+import QuantityButton from "../../components/Product/QuantityButton";
 import { increaseQuantity } from "../../store/ShoppingCartItems/actions";
-import Products from "../../components/Products/";
+import Products from "../../components/Product/Products";
 
 function Product() {
   const { id } = useParams();

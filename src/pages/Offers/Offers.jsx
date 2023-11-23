@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
-import HeaderItem from "../../components/HeaderItem";
+import HeaderItem from "../../components/Header/HeaderItem";
 import { Container, Wrapper, CouponContainer, Coupon } from "./Offers.styles";
-import CouponCard from "../../components/Home/CouponCard";
+import CouponCard from "../../components/Coupon/CouponCard";
 import GetCoupons from "../../store/Coupons/actions";
 
 const Offers = () => {

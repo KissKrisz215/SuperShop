@@ -1,6 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
-import HeaderItem from "../../components/HeaderItem";
+import HeaderItem from "../../components/Header/HeaderItem";
 import {
   Container,
   HeaderContainer,

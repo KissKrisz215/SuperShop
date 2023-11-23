@@ -12,7 +12,7 @@ import {
   SubHeaderLink,
   ItemContainer,
 } from "./SubHeader.styles";
-import NavbarDropDown from "../NavbarDropDown/NavbarDropDown";
+import NavbarDropDown from "../../DropDown/NavbarDropDown";
 
 const SubHeader = () => {
   const [isNavbarDropDown, setIsNavbarDropDown] = useState(false);

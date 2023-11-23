@@ -8,7 +8,7 @@ import {
   ProfileImage,
 } from "./UserToggle.styles";
 import { setLoginDropDown } from "../../../store/UserDropDown/actions";
-import LoginDropDown from "../LoginDropDown";
+import LoginDropDown from "../../DropDown/LoginDropDown";
 import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import AuthContext from "../../../context/AuthProvider";
 
