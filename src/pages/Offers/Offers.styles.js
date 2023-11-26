@@ -33,3 +33,9 @@ export const CouponContainer = styled.div`
 export const Coupon = styled.div`
   min-height: 180px;
 `;
+
+export const LoadingRowsContainer = styled.div`
+  height: 100%;
+  width: 65%;
+  margin-top: 10rem;
+`;
