@@ -11,6 +11,7 @@ import {
   faChevronRight,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import GridLoaderBar from "../Loading/GridLoaderBar";
 import {
   Wrapper,
   Container,
@@ -37,12 +38,14 @@ import {
   NavigationFontAwesome,
   IconContainer,
   Icon,
+  LoadingContainer,
 } from "./OrdersTable.styles";
 import AuthContext from "../../context/AuthProvider";
 
 const OrdersTable = ({ headers, isTableHeader }) => {
   const [orderData, setOrderData] = useState(null);
   const [activePage, setActivePage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(null);
   const [totalOrders, setTotalOrders] = useState(0);
   const [pendingOrders, setPendingOrders] = useState(0);
@@ -51,6 +54,7 @@ const OrdersTable = ({ headers, isTableHeader }) => {
   const { auth } = useContext(AuthContext);
 
   const getData = async () => {
+    setIsLoading(true);
     try {
       const { data } = await axios(
         "https://super-shop-backend-five.vercel.app/api/user/orders",
@@ -61,8 +65,10 @@ const OrdersTable = ({ headers, isTableHeader }) => {
         }
       );
       setOrderData(data);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
     }
   };
 
@@ -181,6 +187,11 @@ const OrdersTable = ({ headers, isTableHeader }) => {
           ))}
         </TableHeaderContainer>
       )}
+      {isLoading && (
+        <LoadingContainer>
+          <GridLoaderBar />
+        </LoadingContainer>
+      )}
       {orderData && (
         <TableWrapper>
           <Container>
@@ -237,7 +248,7 @@ const OrdersTable = ({ headers, isTableHeader }) => {
           </TableNavigationContainer>
         </TableWrapper>
       )}
-      {orderData === null && (
+      {orderData === null && isLoading === false && (
         <ErrorMessageContainer>
           <IconContainer>
             <Icon>

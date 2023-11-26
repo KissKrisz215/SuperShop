@@ -197,3 +197,10 @@ export const IconContainer = styled.div`
 export const Icon = styled.div`
   color: ${(props) => props.theme.darkGreen};
 `;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 7.5rem;
+`;
