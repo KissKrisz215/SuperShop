@@ -102,3 +102,10 @@ export const ErrorMessage = styled.div`
 export const ErrorText = styled.p`
   font-size: 0.85rem;
 `;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

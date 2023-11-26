@@ -1,6 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSearchValue,
+  setLoading,
+  getProducts,
+  setProducts,
+} from "../../../store/SearchBar/actions";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import {
   Wrapper,
   InputContainer,
@@ -14,37 +22,23 @@ import {
   TextContainer,
   ErrorMessage,
   ErrorText,
+  LoadingContainer,
 } from "./SearchBar.styles";
 
 const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const searchValue = useSelector((state) => state.search.searchValue);
+  const isLoading = useSelector((state) => state.search.isLoading);
+  const errorMessage = useSelector((state) => state.search.errorMessage);
+  const products = useSelector((state) => state.search.products);
   const [searchDropDown, setSearchDropDown] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [products, setProducts] = useState(null);
   const dropDownRef = useRef(null);
-
-  const searchProducts = async () => {
-    try {
-      const { data } = await axios.post(
-        "https://super-shop-backend-five.vercel.app/api/products/search",
-        { searchValue }
-      );
-      setProducts(data);
-      setIsLoading(false);
-      setErrorMessage(false);
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMessage(true);
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
         setSearchDropDown(false);
-        setSearchValue("");
+        dispatch(setSearchValue(""));
       }
     };
 
@@ -58,15 +52,15 @@ const SearchBar = () => {
   useEffect(() => {
     if (searchValue.length > 0) {
       setSearchDropDown(true);
-      searchProducts(searchValue);
+      dispatch(getProducts());
     } else {
       setSearchDropDown(false);
-      setProducts(null);
+      dispatch(setProducts(null));
     }
   }, [searchValue]);
 
   const closeDropDown = () => {
-    setSearchValue("");
+    dispatch(setSearchValue(""));
     setSearchDropDown(false);
   };
 
@@ -75,7 +69,7 @@ const SearchBar = () => {
       <InputContainer>
         <Input
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e) => dispatch(setSearchValue(e.target.value))}
           placeholder="Search for products (e.g. fish, apple, oil)"
         />
         <SearchIcon>
@@ -106,6 +100,9 @@ const SearchBar = () => {
       </InputContainer>
       {searchDropDown === true && (
         <DropDownContainer ref={dropDownRef}>
+          <LoadingContainer>
+            <LoadingSpinner loading={isLoading} />
+          </LoadingContainer>
           {errorMessage ? (
             <ErrorMessage>
               <ErrorText>No Results</ErrorText>

@@ -13,6 +13,7 @@ import CouponReducer from "./Coupons";
 import ProductDropDownReducer from "./ProductDropDown";
 import ShoppingCartReducer from "./ShoppingCartItems";
 import menuDropDownReducer from "./MenuDropDown";
+import SearchReducer from "./SearchBar";
 
 const rootReducer = combineReducers({
   cartDropDown: cartDropDownReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   product: ProductDropDownReducer,
   shoppingCart: ShoppingCartReducer,
   menuDropDown: menuDropDownReducer,
+  search: SearchReducer,
 });
 
 const persistConfig = {
