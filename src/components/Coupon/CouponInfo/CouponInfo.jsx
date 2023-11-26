@@ -13,7 +13,7 @@ const CouponInfo = () => {
       <Header>Latest Super Discount Active Coupon Code</Header>
       <CouponCardContainer>
         {data.length < 1 && (
-          <LoadingRows height={28} count={6} margin={"0.2rem"} />
+          <LoadingRows height={20} count={6} margin={"0.25rem"} />
         )}
         {data &&
           data

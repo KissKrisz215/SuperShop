@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { nanoid } from "nanoid";
+import LoadingRows from "../../Loading/LoadingRows";
 import {
   Wrapper,
   Container,
@@ -14,6 +15,7 @@ import {
   Logo,
   Title,
   Icon,
+  LoadingContainer,
 } from "./FeaturedCategories.styles";
 
 const FeaturedCategories = () => {
@@ -26,9 +28,14 @@ const FeaturedCategories = () => {
         <Description>
           Choose your necessary products from this feature categories.
         </Description>
-        <CategoryContainer>
-          {data &&
-            data.map((category) => (
+        {data.length < 1 && (
+          <LoadingContainer>
+            <LoadingRows height={13} count={7} />
+          </LoadingContainer>
+        )}
+        {data && (
+          <CategoryContainer>
+            {data.map((category) => (
               <CategoryItem key={nanoid()}>
                 <Logo
                   alt={`${category.name.en} Category`}
@@ -72,7 +79,8 @@ const FeaturedCategories = () => {
                 </ContentContainer>
               </CategoryItem>
             ))}
-        </CategoryContainer>
+          </CategoryContainer>
+        )}
       </Container>
     </Wrapper>
   );

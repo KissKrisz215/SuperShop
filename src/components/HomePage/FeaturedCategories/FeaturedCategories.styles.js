@@ -37,6 +37,12 @@ export const Description = styled.p`
   padding: 0rem 0.5rem;
 `;
 
+export const LoadingContainer = styled.div`
+  width: 90%;
+  margin-top: 1.8rem;
+  padding: 0rem 5rem;
+`;
+
 export const CategoryContainer = styled.div`
   margin-top: 1.5rem;
   display: grid;
