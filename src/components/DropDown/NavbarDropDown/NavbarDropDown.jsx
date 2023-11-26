@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
+import Loading from "../../Loading/Loading";
 import {
   Wrapper,
   CategoriesContainer,
@@ -12,6 +13,7 @@ import {
   CategoryItemInnerContainer,
   SubCategoryContainer,
   SubCategoryHeader,
+  LoadingContainer,
 } from "./NavbarDropDown.styles";
 
 const NavbarDropDown = ({
@@ -25,6 +27,7 @@ const NavbarDropDown = ({
   gap,
 }) => {
   const categories = useSelector((state) => state.categories.data);
+  const loading = useSelector((state) => state.categories.isLoading);
   const [activeCategory, setActiveCategory] = useState(null);
   const categoryRef = useRef(null);
 
@@ -58,6 +61,9 @@ const NavbarDropDown = ({
       border={border}
       width={width}
     >
+      <LoadingContainer>
+        <Loading loading={loading} />
+      </LoadingContainer>
       <CategoriesContainer gap={gap}>
         {categories &&
           categories.map((category) => (

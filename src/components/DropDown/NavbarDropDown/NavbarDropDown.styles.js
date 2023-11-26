@@ -84,3 +84,9 @@ export const SubCategoryHeader = styled.h5`
     color: ${(props) => props.theme.emeraldGreen};
   }
 `;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
