@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { nanoid } from "nanoid";
+import LoadingRows from "../../Loading/LoadingRows/LoadingRows";
 import { Container, Header, CouponCardContainer } from "./CouponInfo.styles";
 import CouponCard from "../CouponCard";
 
@@ -11,6 +12,9 @@ const CouponInfo = () => {
     <Container>
       <Header>Latest Super Discount Active Coupon Code</Header>
       <CouponCardContainer>
+        {data.length < 1 && (
+          <LoadingRows height={28} count={6} margin={"0.2rem"} />
+        )}
         {data &&
           data
             .slice(2, 4)

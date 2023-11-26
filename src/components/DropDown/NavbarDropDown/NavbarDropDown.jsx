@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
-import Loading from "../../Loading/Loading";
+import Loading from "../../Loading/Loading/Loading";
 import {
   Wrapper,
   CategoriesContainer,

@@ -8,7 +8,7 @@ import {
   getProducts,
   setProducts,
 } from "../../../store/SearchBar/actions";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../Loading/LoadingSpinner/LoadingSpinner";
 import {
   Wrapper,
   InputContainer,
