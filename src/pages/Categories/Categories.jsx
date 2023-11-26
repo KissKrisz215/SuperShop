@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { nanoid } from "nanoid";
+import GridLoaderBar from "../../components/Loading/GridLoaderBar";
 import {
   Wrapper,
   Container,
@@ -16,6 +17,7 @@ import {
   ProductsButton,
   ProductsButtonContainer,
   ProductQuantity,
+  LoadingContainer,
 } from "./Categories.styles";
 import CategoryHeader from "../../components/ProductsPage/CategoryHeader";
 import Icons from "../../assets/index";
@@ -102,32 +104,40 @@ const Categories = () => {
           ))}
         </HeaderContainer>
         <CategoryCarousel />
-        <CategoryProductsWrapper>
-          <CategoryProductsHeader>
-            <CategorySubHeader>
-              Total all <ProductQuantity>{allProducts.length}</ProductQuantity>{" "}
-              items Found
-            </CategorySubHeader>
-            <CategoryButton value={sortOption} onChange={handleSortChange}>
-              <CategoryButtonOption value="lowToHigh">
-                Low To High
-              </CategoryButtonOption>
-              <CategoryButtonOption value="highToLow">
-                High To Low
-              </CategoryButtonOption>
-            </CategoryButton>
-          </CategoryProductsHeader>
-          <CategoryProductsContent>
-            <Products products={visibleProducts} />
-            {visibleProducts.length < allProducts.length && (
-              <ProductsButtonContainer>
-                <ProductsButton onClick={handleLoadMore}>
-                  Load More
-                </ProductsButton>
-              </ProductsButtonContainer>
-            )}
-          </CategoryProductsContent>
-        </CategoryProductsWrapper>
+        {allProducts.length > 1 && (
+          <CategoryProductsWrapper>
+            <CategoryProductsHeader>
+              <CategorySubHeader>
+                Total all{" "}
+                <ProductQuantity>{allProducts.length}</ProductQuantity> items
+                Found
+              </CategorySubHeader>
+              <CategoryButton value={sortOption} onChange={handleSortChange}>
+                <CategoryButtonOption value="lowToHigh">
+                  Low To High
+                </CategoryButtonOption>
+                <CategoryButtonOption value="highToLow">
+                  High To Low
+                </CategoryButtonOption>
+              </CategoryButton>
+            </CategoryProductsHeader>
+            <CategoryProductsContent>
+              <Products products={visibleProducts} />
+              {visibleProducts.length < allProducts.length && (
+                <ProductsButtonContainer>
+                  <ProductsButton onClick={handleLoadMore}>
+                    Load More
+                  </ProductsButton>
+                </ProductsButtonContainer>
+              )}
+            </CategoryProductsContent>
+          </CategoryProductsWrapper>
+        )}
+        {allProducts.length < 1 && (
+          <LoadingContainer>
+            <GridLoaderBar loading={true} />
+          </LoadingContainer>
+        )}
       </Container>
     </Wrapper>
   );

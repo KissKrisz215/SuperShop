@@ -95,3 +95,9 @@ export const ProductQuantity = styled.span`
   font-weight: 600;
   font-size: 0.67rem;
 `;
+
+export const LoadingContainer = styled.div`
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+`;
