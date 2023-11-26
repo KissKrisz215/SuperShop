@@ -263,3 +263,10 @@ export const CustomFontAwesomeIcon = styled(FontAwesomeIcon)`
   font-size: 0.65rem;
   margin: 0rem 0rem 0rem 0.2rem;
 `;
+
+export const LoadingContainer = styled.div`
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

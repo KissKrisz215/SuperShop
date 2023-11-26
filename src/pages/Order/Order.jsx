@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import GridLoaderBar from "../../components/Loading/GridLoaderBar";
 import AuthContext from "../../context/AuthProvider";
 import Icons from "../../assets/index";
 import {
@@ -44,6 +45,7 @@ import {
   Button,
   InvoiceDetailsContainer,
   CustomFontAwesomeIcon,
+  LoadingContainer,
 } from "./Order.styles";
 
 const tableHeaders = [
@@ -88,7 +90,11 @@ const Order = () => {
   }, []);
 
   if (isLoading || !orderData) {
-    return <p>Loading......</p>;
+    return (
+      <LoadingContainer>
+        <GridLoaderBar />
+      </LoadingContainer>
+    );
   }
 
   return (
