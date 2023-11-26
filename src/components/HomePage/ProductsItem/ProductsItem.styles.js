@@ -37,3 +37,9 @@ export const Description = styled.p`
     max-width: 450px;
   }
 `;
+
+export const LoadingContainer = styled.div`
+  width: 90%;
+  margin-top: 2.5rem;
+  padding-bottom: 0rem;
+`;

@@ -31,25 +31,21 @@ const Home = () => {
     <Container>
       <Info />
       <FeaturedCategories />
-      {popularProducts && (
-        <ProductsItem
-          title={"Popular Products for Daily Shopping"}
-          description={
-            "See all our popular products in this week. You can choose your daily needs products from this list and get some special offer with free shipping."
-          }
-          products={popularProducts}
-        />
-      )}
+      <ProductsItem
+        title={"Popular Products for Daily Shopping"}
+        description={
+          "See all our popular products in this week. You can choose your daily needs products from this list and get some special offer with free shipping."
+        }
+        products={popularProducts}
+      />
       <ProductsItemText />
-      {discountedProducts && (
-        <ProductsItem
-          title={"Latest Discounted Products"}
-          description={
-            "See Our latest discounted products below. Choose your daily needs from here and get a special discount with free shipping."
-          }
-          products={discountedProducts}
-        />
-      )}
+      <ProductsItem
+        title={"Latest Discounted Products"}
+        description={
+          "See Our latest discounted products below. Choose your daily needs from here and get a special discount with free shipping."
+        }
+        products={discountedProducts}
+      />
     </Container>
   );
 };
