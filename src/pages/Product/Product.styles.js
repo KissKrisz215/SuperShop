@@ -200,6 +200,9 @@ export const ProductInfoText = styled.div``;
 
 export const RelatedProductsContainer = styled.div`
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   @media only screen and ${breakpoints.device.xs} {
     margin-left: 1.5rem;
   }
@@ -208,4 +211,17 @@ export const RelatedProductsContainer = styled.div`
 export const RelatedProductsHeader = styled.p`
   font-size: 0.9rem;
   font-weight: 600;
+  align-self: flex-start;
+`;
+
+export const LoadingContainer = styled.div`
+  margin-top: 2rem;
+  width: 85%;
+`;
+
+export const LoadingSpinnerContainer = styled.div`
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

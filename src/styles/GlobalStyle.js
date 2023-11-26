@@ -12,6 +12,6 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 22px;
         font-weight: 500;
         font-style: normal;
-${"" /* border:1px solid red; */}
+ ${"" /* border:1px solid red; */}
      }
 `;

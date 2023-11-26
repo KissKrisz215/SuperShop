@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import axios from "axios";
+import LoadingRows from "../../components/Loading/LoadingRows";
+import GridLoaderBar from "../../components/Loading/GridLoaderBar";
 import {
   Wrapper,
   Container,
@@ -33,6 +35,8 @@ import {
   ProductCategoryLink,
   RelatedProductsContainer,
   RelatedProductsHeader,
+  LoadingContainer,
+  LoadingSpinnerContainer,
 } from "./Product.styles";
 import QuantityButton from "../../components/Product/QuantityButton";
 import { increaseQuantity } from "../../store/ShoppingCartItems/actions";
@@ -95,6 +99,11 @@ function Product() {
   return (
     <Wrapper>
       <Container>
+        {!product && (
+          <LoadingSpinnerContainer>
+            <GridLoaderBar loading={true} />
+          </LoadingSpinnerContainer>
+        )}
         {product && (
           <ProductContainer>
             <ProductCategoryHeader>
@@ -204,12 +213,15 @@ function Product() {
                 </ProductText>
               </ProductDescription>
             </ProductCard>
-            {relatedProducts && (
-              <RelatedProductsContainer>
-                <RelatedProductsHeader>Related Products</RelatedProductsHeader>
-                <Products products={relatedProducts} />
-              </RelatedProductsContainer>
-            )}
+            <RelatedProductsContainer>
+              <RelatedProductsHeader>Related Products</RelatedProductsHeader>
+              {!relatedProducts && (
+                <LoadingContainer>
+                  <LoadingRows height={12} count={10} />
+                </LoadingContainer>
+              )}
+              {relatedProducts && <Products products={relatedProducts} />}
+            </RelatedProductsContainer>
           </ProductContainer>
         )}
       </Container>
