@@ -35,10 +35,6 @@ const Notification = () => {
     }
   }, [notification]);
 
-  useEffect(() => {
-    console.log("Notification component mounted");
-  }, []);
-
   return (
     <ToastContainer
       position="top-center"

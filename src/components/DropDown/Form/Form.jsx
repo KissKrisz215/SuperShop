@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { nanoid } from "nanoid";
-import useAuth from "../../../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../../hooks/useAuth";
 import {
   LoginFormContainer,
   FormHeader,
@@ -33,7 +34,6 @@ import { handleLogin } from "../../../store/Form/actions";
 import { setNotification } from "../../../store/Notification/actions";
 
 const Form = ({
-  inputs,
   buttontext,
   linkto,
   link,
@@ -41,6 +41,7 @@ const Form = ({
   description,
   linktext,
   apiUrl,
+  formType,
 }) => {
   const { setAuth, persist, setPersist } = useAuth();
   const navigate = useNavigate();
@@ -97,7 +98,15 @@ const Form = ({
 
   useEffect(() => {
     setFormData({});
-  }, [inputs]);
+  }, [formType]);
+
+  useEffect(() => {
+    setFormData({});
+  }, []);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   return (
     <LoginFormContainer>
@@ -106,25 +115,108 @@ const Form = ({
         <Description>{description && description}</Description>
       </FormHeader>
       <FormBody>
-        <InputsContainer>
-          {inputs &&
-            inputs.map((item) => (
-              <InputWrapper key={nanoid()}>
-                <InputHeader>{item.label}</InputHeader>
-                <InputContainer>
-                  <InputIcon>
-                    <StyledFontAwesomeIcon size={"xs"} icon={item.icon} />
-                  </InputIcon>
-                  <Input
-                    onChange={handleInputChange}
-                    name={item.formLabel}
-                    placeholder={item.inputholder}
-                    value={formData[item.formLabel] || ""}
-                  />
-                </InputContainer>
-              </InputWrapper>
-            ))}
-        </InputsContainer>
+        {formType === "signup" && (
+          <InputsContainer>
+            <InputWrapper>
+              <InputHeader>Name</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faUser} />
+                </InputIcon>
+                <Input
+                  type="text"
+                  onChange={handleInputChange}
+                  name="username"
+                  placeholder="Full Name"
+                  value={formData.username}
+                />
+              </InputContainer>
+            </InputWrapper>
+            <InputWrapper>
+              <InputHeader>Email</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faEnvelope} />
+                </InputIcon>
+                <Input
+                  type="email"
+                  onChange={handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                />
+              </InputContainer>
+            </InputWrapper>
+            <InputWrapper>
+              <InputHeader>Password</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faLock} />
+                </InputIcon>
+                <Input
+                  type="password"
+                  onChange={handleInputChange}
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                />
+              </InputContainer>
+            </InputWrapper>
+          </InputsContainer>
+        )}
+        {formType === "login" && (
+          <InputsContainer>
+            <InputWrapper>
+              <InputHeader>Email</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faEnvelope} />
+                </InputIcon>
+                <Input
+                  type="email"
+                  onChange={handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                />
+              </InputContainer>
+            </InputWrapper>
+            <InputWrapper>
+              <InputHeader>Password</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faLock} />
+                </InputIcon>
+                <Input
+                  type="password"
+                  onChange={handleInputChange}
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                />
+              </InputContainer>
+            </InputWrapper>
+          </InputsContainer>
+        )}
+        {formType === "resetpassword" && (
+          <InputsContainer>
+            <InputWrapper>
+              <InputHeader>Email</InputHeader>
+              <InputContainer>
+                <InputIcon>
+                  <StyledFontAwesomeIcon size={"xs"} icon={faEnvelope} />
+                </InputIcon>
+                <Input
+                  type="email"
+                  onChange={handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                />
+              </InputContainer>
+            </InputWrapper>
+          </InputsContainer>
+        )}
         <PasswordLinkContainer>
           <PasswordResetLink onClick={() => handleForgotPassword()}>
             Forgot password?

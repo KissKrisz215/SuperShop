@@ -16,51 +16,6 @@ import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import Form from "../Form/Form";
 import AuthContext from "../../../context/AuthProvider";
 
-const loginInputs = [
-  {
-    label: "Email",
-    inputholder: "Email",
-    icon: faEnvelope,
-    formLabel: "email",
-  },
-  {
-    label: "Password",
-    inputholder: "Password",
-    icon: faLock,
-    formLabel: "password",
-  },
-];
-
-const signUpInputs = [
-  {
-    label: "Name",
-    inputholder: "Full Name",
-    icon: faUser,
-    formLabel: "username",
-  },
-  {
-    label: "Email",
-    inputholder: "Email",
-    icon: faEnvelope,
-    formLabel: "email",
-  },
-  {
-    label: "Password",
-    inputholder: "Password",
-    icon: faLock,
-    formLabel: "password",
-  },
-];
-
-const passwordInputs = [
-  {
-    label: "Email",
-    inputholder: "Your Registered Email",
-    icon: faEnvelope,
-    formLabel: "email",
-  },
-];
-
 const LoginDropDown = () => {
   const { auth } = useContext(AuthContext);
   const isLoginDropDown = useSelector((state) => state.loginDropDown.isActive);
@@ -73,19 +28,17 @@ const LoginDropDown = () => {
     dispatch(setLoginFormType("login"));
   };
 
-  const handleSignUp = () => {};
-
   let formContent;
   switch (formType) {
     case "login":
       formContent = (
         <Form
+          formType="login"
           buttontext="Login"
           title="Login"
           description={"Login with your email and password"}
           link="Register"
           linkto="signup"
-          inputs={loginInputs}
           linktext={"Don't have an account yet?"}
           apiUrl="https://super-shop-backend-five.vercel.app/api/auth/login"
         />
@@ -94,12 +47,12 @@ const LoginDropDown = () => {
     case "signup":
       formContent = (
         <Form
+          formType="signup"
           buttontext="Register"
           title="Sign Up"
           description={"Create an account with email"}
           link="Login"
           linkto="login"
-          inputs={signUpInputs}
           linktext={"Already have an account?"}
           apiUrl="https://super-shop-backend-five.vercel.app/api/auth/signup"
         />
@@ -108,11 +61,11 @@ const LoginDropDown = () => {
     case "resetpassword":
       formContent = (
         <Form
+          formType="resetpassword"
           buttontext="Recover Password"
           title="Forgot Password"
           description={"Reset Your Password"}
           link="Login"
-          inputs={passwordInputs}
           linktext={"Already have an account?"}
           linkto="login"
           apiUrl="https://super-shop-backend-five.vercel.app/api/user/changepassword"
