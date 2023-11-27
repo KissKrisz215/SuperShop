@@ -29,6 +29,8 @@ import {
   StyledFontAwesomeIcon,
 } from "./Form.styles";
 import { setLoginFormType } from "../../../store/UserDropDown/actions";
+import { handleLogin } from "../../../store/Form/actions";
+import { setNotification } from "../../../store/Notification/actions";
 
 const Form = ({
   inputs,
@@ -44,7 +46,6 @@ const Form = ({
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
   const store = useSelector((state) => state);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
@@ -69,14 +70,9 @@ const Form = ({
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (
-      apiUrl === "https://super-shop-backend-five.vercel.app/api/auth/login"
-    ) {
-      try {
-        const response = await axios.post(
-          "https://super-shop-backend-five.vercel.app/api/auth/login",
-          formData
-        );
+    if (title === "Login") {
+      dispatch(handleLogin(formData)).then((response) => {
+        const from = location.state?.from?.pathname || "/";
         const accessToken = response?.data?.token;
         const decodedToken = jwtDecode(accessToken);
         setAuth({
@@ -87,15 +83,14 @@ const Form = ({
         });
         setFormData({});
         navigate(from, { replace: true });
-      } catch (error) {
-        console.error("Error:", error.message);
-        setFormData({});
-      }
+      });
     } else {
       try {
         const response = await axios.post(apiUrl, formData);
+        dispatch(setNotification(true, "Success!", "success"));
       } catch (error) {
         console.error("Error:", error.message);
+        dispatch(setNotification(true, "There was an error!", "failure"));
       }
     }
   };

@@ -11,6 +11,7 @@ export const Container = styled.div`
   z-index: 1000;
   border-radius: 0.2rem;
   overflow: hidden;
+  display: ${(props) => (props.isNotificationActive ? "block" : "none")};
 `;
 
 export const NotificationBody = styled.div`

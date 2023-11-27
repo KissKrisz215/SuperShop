@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import AuthContext from "../../context/AuthProvider";
 import UserHeader from "../../components/Header/UserHeader";
 import {
   Container,
@@ -19,8 +20,11 @@ import {
   Input,
   ErrorMessage,
 } from "./UpdateProfile.styles";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../store/Notification/actions";
 
 const UpdateProfile = () => {
+  const dispatch = useDispatch();
   const initialFormData = {
     username: "",
     address: "",
@@ -28,7 +32,7 @@ const UpdateProfile = () => {
     email: "",
     profilePicture: "",
   };
-
+  const { auth } = useContext(AuthContext);
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({
     phoneNumber: "",
@@ -118,16 +122,19 @@ const UpdateProfile = () => {
   const handleData = async (data) => {
     try {
       const response = await axios.put(
-        "https://super-shop-backend-five.vercel.app/api/user/update",
+        "http://localhost:3500/api/user/update",
         data,
         {
           headers: {
-            "x-auth-token": ``,
+            "x-auth-token": `${auth?.accessToken}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
+      dispatch(setNotification(true, `User Changed Succesfully!`, "success"));
     } catch (error) {
       console.log(error);
+      dispatch(setNotification(true, `There was an error!`, "failure"));
     }
   };
 

@@ -41,6 +41,7 @@ import {
 import QuantityButton from "../../components/Product/QuantityButton";
 import { increaseQuantity } from "../../store/ShoppingCartItems/actions";
 import Products from "../../components/Product/Products";
+import { setNotification } from "../../store/Notification/actions";
 
 function Product() {
   const { id } = useParams();
@@ -52,6 +53,13 @@ function Product() {
   const handleAddToCard = () => {
     dispatch(increaseQuantity(product, quantity));
     setQuantity(1);
+    dispatch(
+      setNotification(
+        true,
+        `${quantity} ${product.title.en} Added to Cart`,
+        "success"
+      )
+    );
   };
 
   const handleIncreaseQuantity = () => {

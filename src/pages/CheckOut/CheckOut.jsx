@@ -30,6 +30,7 @@ import ShoppingCartItem from "../../components/ShoppingCart/ShoppingCartItem/Sho
 import CheckOutForm from "../../components/CheckOutPage/CheckOutForm";
 import AuthContext from "../../context/AuthProvider";
 import { deleteAllProducts } from "../../store/ShoppingCartItems/actions";
+import { setNotification } from "../../store/Notification/actions";
 
 const CheckOut = () => {
   const initialFormData = {
@@ -154,8 +155,10 @@ const CheckOut = () => {
           dispatch(deleteAllProducts());
         }, 1000);
       }
+      dispatch(setNotification(true, `Order Placed Successfully`, "success"));
     } catch (err) {
       console.log(err);
+      dispatch(setNotification(true, `There was an error`, "failure"));
     }
   };
 

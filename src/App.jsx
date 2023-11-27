@@ -53,7 +53,7 @@ function App() {
         <LoginDropDown />
         <MobileNavbar />
         <MenuDropDown />
-        {/* <Notification message={"Invalid user or password!"} /> */}
+        <Notification />
         <GlobalStyle />
         <Navbar />
         <Routes>

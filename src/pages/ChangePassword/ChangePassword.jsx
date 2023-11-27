@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import AuthContext from "../../context/AuthProvider";
 import UserHeader from "../../components/Header/UserHeader";
 import {
   FormWrapper,
@@ -10,6 +12,7 @@ import {
   ButtonContainer,
   ErrorMessage,
 } from "./ChangePassword.styles";
+import { setNotification } from "../../store/Notification/actions";
 
 const ChangePassword = () => {
   const initialFormData = {
@@ -17,10 +20,10 @@ const ChangePassword = () => {
     currentPassword: "",
     newPassword: "",
   };
-
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
-
+  const { auth } = useContext(AuthContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -49,14 +52,22 @@ const ChangePassword = () => {
   };
   const handleData = async (data) => {
     try {
-      const response = await axios.post(
-        "https://super-shop-backend-five.vercel.app/api/user/changepassword",
+      const response = await axios.put(
+        "http://localhost:3500/api/user/changepassword",
         {
           newPassword: data.newPassword,
+          password: data.currentPassword,
+        },
+        {
+          headers: {
+            "x-auth-token": `${auth?.accessToken}`,
+          },
         }
       );
+      dispatch(setNotification(true, "Changed Successfully!", "success"));
     } catch (error) {
       console.error("Error making POST request:", error);
+      dispatch(setNotification(true, "There was an error!", "failure"));
     }
   };
 

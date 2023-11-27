@@ -31,6 +31,7 @@ import { setModalBackDrop } from "../../../store/ModalBackDrop/actions";
 import { setProductDropDown } from "../../../store/ProductDropDown/actions";
 import QuantityButton from "../../Product/QuantityButton";
 import { increaseQuantity } from "../../../store/ShoppingCartItems/actions";
+import { setNotification } from "../../../store/Notification/actions";
 
 const ProductDropDown = () => {
   const isActive = useSelector((state) => state.product.isDropDown);
@@ -43,6 +44,13 @@ const ProductDropDown = () => {
   const handleAddToCard = () => {
     dispatch(increaseQuantity(product, quantity));
     setQuantity(1);
+    dispatch(
+      setNotification(
+        true,
+        `${quantity} ${product.title.en} Added to Cart`,
+        "success"
+      )
+    );
   };
 
   const handleIncreaseQuantity = () => {
