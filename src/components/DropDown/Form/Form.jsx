@@ -103,11 +103,7 @@ const Form = ({
   useEffect(() => {
     setFormData({});
   }, []);
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
+  
   return (
     <LoginFormContainer>
       <FormHeader>
