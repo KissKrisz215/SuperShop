@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { nanoid } from "nanoid";
+import axios from "axios";
 import {
   faEnvelope,
   faBell,
@@ -33,6 +35,7 @@ import {
   FormError,
 } from "./ContactUs.styles";
 import Icons from "../../assets/index";
+import { setNotification } from "../../store/Notification/actions";
 
 const contactCards = [
   {
@@ -61,16 +64,17 @@ const contactCards = [
 ];
 
 const ContactUs = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
-    name: "",
+    username: "",
     subject: "",
     message: "",
   });
 
   const [formErrors, setFormErrors] = useState({
     email: "",
-    name: "",
+    username: "",
     subject: "",
     message: "",
   });
@@ -92,6 +96,18 @@ const ContactUs = () => {
     }));
   };
 
+  const handleSendForm = async () => {
+    try {
+      const response = await axios.post("http://localhost:3500/api/form", {
+        formData,
+      });
+      dispatch(setNotification(true, "Success Sending Form!", "success"));
+    } catch (error) {
+      dispatch(setNotification(true, "There was an error!", "failure"));
+      console.log(error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -111,15 +127,16 @@ const ContactUs = () => {
     if (Object.keys(newFormErrors).length > 0) {
       setFormErrors(newFormErrors);
     } else {
+      handleSendForm();
       setFormData({
         email: "",
-        name: "",
+        username: "",
         subject: "",
         message: "",
       });
       setFormErrors({
         email: "",
-        name: "",
+        username: "",
         subject: "",
         message: "",
       });
@@ -166,11 +183,11 @@ const ContactUs = () => {
             <Form>
               <NameInputContainer>
                 <InputContainer>
-                  <Label htmlFor="name">Your Name</Label>
+                  <Label htmlFor="username">Your Name</Label>
                   <Input
                     type="text"
-                    name="name"
-                    id="name"
+                    name="username"
+                    id="username"
                     placeholder="Enter Your Name"
                     value={formData.name}
                     onChange={handleChange}

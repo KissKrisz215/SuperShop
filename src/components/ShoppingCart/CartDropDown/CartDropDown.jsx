@@ -45,7 +45,6 @@ const CartDropDown = () => {
   };
 
   const handleDocumentClick = (event) => {
-    console.log("clicked outside !!!!");
     if (cartRef.current && !cartRef.current.contains(event.target)) {
       handleDropDown();
     }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import breakpoints from "../../styles/breakpoints";
 
-export const Container = styled.div`
+export const Container = styled.form`
   max-width: 1450px;
   width: 100%;
 `;
