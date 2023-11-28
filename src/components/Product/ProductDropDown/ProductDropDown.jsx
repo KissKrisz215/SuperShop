@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import {
@@ -40,6 +40,13 @@ const ProductDropDown = () => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+  const dropdownRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      handleDropDownClose();
+    }
+  };
 
   const handleAddToCard = () => {
     dispatch(increaseQuantity(product, quantity));
@@ -73,15 +80,17 @@ const ProductDropDown = () => {
         dispatch(setModalBackDrop(true));
       }
       document.body.style.overflow = "hidden";
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
       dispatch(setModalBackDrop(false));
-
       document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isActive]);
+  }, [isActive, isModalActive]);
 
   if (!isActive) {
     return null;
@@ -89,13 +98,16 @@ const ProductDropDown = () => {
 
   return (
     <Container>
-      <DropDownContainer>
+      <DropDownContainer ref={dropdownRef}>
         {product.prices.discount > 0 && (
           <DiscountContainer>
             {product.prices.discount.toFixed(2)}% Off
           </DiscountContainer>
         )}
-        <ProductImageContainer to={`/product/${product.title}`}>
+        <ProductImageContainer
+          onClick={() => handleDropDownClose()}
+          to={`/product/${product._id}`}
+        >
           <ProductImage alt={`${product.title} Image`} src={product.image[0]} />
         </ProductImageContainer>
         <ProductContent>

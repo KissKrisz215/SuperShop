@@ -48,7 +48,10 @@ const Form = ({
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const store = useSelector((state) => state);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: "justin@gmail.com",
+    password: "password12345@",
+  });
   const dispatch = useDispatch();
   const handleFormPage = () => {
     dispatch(setLoginFormType(linkto));
@@ -103,11 +106,16 @@ const Form = ({
   };
 
   useEffect(() => {
-    setFormData({});
+    if (formType !== "login") {
+      setFormData({});
+    }
   }, [formType]);
 
   useEffect(() => {
-    setFormData({});
+    setFormData({
+      email: "justin@gmail.com",
+      password: "password12345@",
+    });
   }, []);
 
   return (
