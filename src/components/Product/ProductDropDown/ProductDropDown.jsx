@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import {
@@ -38,15 +38,9 @@ const ProductDropDown = () => {
   const product = useSelector((state) => state.product.data);
   const isModalActive = useSelector((state) => state.ModalBackDrop);
   const [quantity, setQuantity] = useState(1);
-
-  const dispatch = useDispatch();
   const dropdownRef = useRef(null);
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      handleDropDownClose();
-    }
-  };
+  const dispatch = useDispatch();
 
   const handleAddToCard = () => {
     dispatch(increaseQuantity(product, quantity));
@@ -58,6 +52,12 @@ const ProductDropDown = () => {
         "success"
       )
     );
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      handleDropDownClose();
+    }
   };
 
   const handleIncreaseQuantity = () => {
@@ -80,17 +80,22 @@ const ProductDropDown = () => {
         dispatch(setModalBackDrop(true));
       }
       document.body.style.overflow = "hidden";
-      document.addEventListener("mousedown", handleClickOutside);
     } else {
       dispatch(setModalBackDrop(false));
+
       document.body.style.overflow = "auto";
-      document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.body.style.overflow = "auto";
+    };
+  }, [isActive]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isActive, isModalActive]);
+  }, []);
 
   if (!isActive) {
     return null;
