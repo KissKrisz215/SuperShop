@@ -44,13 +44,14 @@ const CartDropDown = () => {
     dispatch(setModalBackDrop(false));
   };
 
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (cartRef.current && !cartRef.current.contains(event.target)) {
-        handleDropDown();
-      }
-    };
+  const handleDocumentClick = (event) => {
+    console.log("clicked outside !!!!");
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      handleDropDown();
+    }
+  };
 
+  useEffect(() => {
     if (CartDropDown) {
       setTimeout(() => {
         document.addEventListener("click", handleDocumentClick);

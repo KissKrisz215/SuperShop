@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -42,6 +42,8 @@ const Form = ({
   linktext,
   apiUrl,
   formType,
+  handleDropDownClose,
+  isLoginDropDown,
 }) => {
   const { setAuth, persist, setPersist } = useAuth();
   const navigate = useNavigate();
@@ -56,6 +58,7 @@ const Form = ({
   const handleFormPage = () => {
     dispatch(setLoginFormType(linkto));
   };
+  const loginDropdownRef = useRef(null);
 
   const handleForgotPassword = () => {
     dispatch(setLoginFormType("resetpassword"));
@@ -118,8 +121,27 @@ const Form = ({
     });
   }, []);
 
+  const handleClickOutside = (event) => {
+    if (
+      loginDropdownRef.current &&
+      !loginDropdownRef.current.contains(event.target)
+    ) {
+      console.log("clicked");
+      handleDropDownClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isLoginDropDown) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [isLoginDropDown]);
+
   return (
-    <LoginFormContainer>
+    <LoginFormContainer ref={loginDropdownRef}>
       <FormHeader>
         <Title>{title && title}</Title>
         <Description>{description && description}</Description>

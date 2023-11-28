@@ -38,7 +38,7 @@ const ProductDropDown = () => {
   const product = useSelector((state) => state.product.data);
   const isModalActive = useSelector((state) => state.ModalBackDrop);
   const [quantity, setQuantity] = useState(1);
-  const dropdownRef = useRef(null);
+  const dropdownRef2 = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -53,9 +53,12 @@ const ProductDropDown = () => {
       )
     );
   };
+  const handleDropDownClose = () => {
+    dispatch(setProductDropDown(false));
+  };
 
   const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (dropdownRef2.current && !dropdownRef2.current.contains(event.target)) {
       handleDropDownClose();
     }
   };
@@ -68,10 +71,6 @@ const ProductDropDown = () => {
     if (quantity - 1 > 0) {
       setQuantity(quantity - 1);
     }
-  };
-
-  const handleDropDownClose = () => {
-    dispatch(setProductDropDown(false));
   };
 
   useEffect(() => {
@@ -103,7 +102,7 @@ const ProductDropDown = () => {
 
   return (
     <Container>
-      <DropDownContainer ref={dropdownRef}>
+      <DropDownContainer ref={dropdownRef2}>
         {product.prices.discount > 0 && (
           <DiscountContainer>
             {product.prices.discount.toFixed(2)}% Off

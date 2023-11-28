@@ -41,6 +41,8 @@ const LoginDropDown = () => {
           linkto="signup"
           linktext={"Don't have an account yet?"}
           apiUrl="https://super-shop-backend-five.vercel.app/api/auth/login"
+          handleDropDownClose={handleDropDownClose}
+          isLoginDropDown={isLoginDropDown}
         />
       );
       break;
@@ -55,6 +57,8 @@ const LoginDropDown = () => {
           linkto="login"
           linktext={"Already have an account?"}
           apiUrl="https://super-shop-backend-five.vercel.app/api/auth/signup"
+          handleDropDownClose={handleDropDownClose}
+          isLoginDropDown={isLoginDropDown}
         />
       );
       break;
@@ -69,6 +73,8 @@ const LoginDropDown = () => {
           linktext={"Already have an account?"}
           linkto="login"
           apiUrl="https://super-shop-backend-five.vercel.app/api/user/changepassword"
+          handleDropDownClose={handleDropDownClose}
+          isLoginDropDown={isLoginDropDown}
         />
       );
       break;
