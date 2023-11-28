@@ -26,15 +26,17 @@ export const getProducts = (value) => async (dispatch, getState) => {
   const searchValue = state.search.searchValue;
   dispatch(setLoading(true));
   try {
-    const { data } = await axios.post(
-      "https://super-shop-backend-five.vercel.app/api/products/search",
-      { searchValue }
-    );
+    if (searchValue) {
+      const { data } = await axios.post(
+        "https://super-shop-backend-five.vercel.app/api/products/search",
+        { searchValue }
+      );
 
-    dispatch({
-      type: GET_PRODUCTS_SUCCESS,
-      payload: data,
-    });
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: data,
+      });
+    }
   } catch (error) {
     dispatch({
       type: GET_PRODUCTS_ERROR,

@@ -50,14 +50,27 @@ const SearchBar = () => {
   }, [dropDownRef]);
 
   useEffect(() => {
-    if (searchValue.length > 0) {
-      setSearchDropDown(true);
-      dispatch(getProducts());
-    } else {
-      setSearchDropDown(false);
-      dispatch(setProducts(null));
-    }
-  }, [searchValue]);
+    const fetchData = async () => {
+      try {
+        if (searchValue.trim().length > 0 && searchValue.trim() !== "") {
+          setSearchDropDown(true);
+          if (searchValue.length !== 1) {
+            setTimeout(() => {
+              dispatch(getProducts());
+            }, 20);
+          }
+        } else {
+          setSearchDropDown(false);
+          dispatch(setProducts(null));
+          dispatch(setSearchValue(""));
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
+  }, [searchValue, dispatch]);
 
   const closeDropDown = () => {
     dispatch(setSearchValue(""));
@@ -98,7 +111,7 @@ const SearchBar = () => {
           </svg>
         </SearchIcon>
       </InputContainer>
-      {searchDropDown === true && (
+      {searchDropDown && (
         <DropDownContainer ref={dropDownRef}>
           <LoadingContainer>
             <LoadingSpinner loading={isLoading} />
