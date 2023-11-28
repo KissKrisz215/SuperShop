@@ -84,7 +84,13 @@ const InfoCarousel = () => {
                 <Header>{item.title}</Header>
                 <Description>{item.description}</Description>
               </CarouselHeader>
-              <Button to={"/categories"}>Shop Now</Button>
+              <Button
+                to={
+                  "/categories/Fruits%20&%20Vegetable/632aca2b4d87ff2494210be8"
+                }
+              >
+                Shop Now
+              </Button>
             </CarouselContent>
           </Carousel>
         ))}
