@@ -72,7 +72,8 @@ const Form = ({
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (title === "Login") {
-      dispatch(handleLogin(formData)).then((response) => {
+      try {
+        const response = await dispatch(handleLogin(formData));
         const from = location.state?.from?.pathname || "/";
         const accessToken = response?.data?.token;
         const decodedToken = jwtDecode(accessToken);
@@ -84,14 +85,19 @@ const Form = ({
         });
         setFormData({});
         navigate(from, { replace: true });
-      });
+      } catch (error) {
+        setFormData({});
+        console.log(error);
+      }
     } else {
       try {
         const response = await axios.post(apiUrl, formData);
         dispatch(setNotification(true, "Success!", "success"));
+        setFormData({});
       } catch (error) {
         console.error("Error:", error.message);
         dispatch(setNotification(true, "There was an error!", "failure"));
+        setFormData({});
       }
     }
   };
@@ -103,7 +109,7 @@ const Form = ({
   useEffect(() => {
     setFormData({});
   }, []);
-  
+
   return (
     <LoginFormContainer>
       <FormHeader>
